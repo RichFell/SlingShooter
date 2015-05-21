@@ -16,6 +16,9 @@
 		9BCDF7991B0E691500C71D8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BCDF7981B0E691500C71D8F /* Images.xcassets */; };
 		9BCDF79C1B0E691500C71D8F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BCDF79A1B0E691500C71D8F /* LaunchScreen.xib */; };
 		9BCDF7A81B0E691500C71D8F /* SlingShotterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7A71B0E691500C71D8F /* SlingShotterTests.m */; };
+		9BCDF7B31B0E7D0400C71D8F /* BadGuy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7B21B0E7D0400C71D8F /* BadGuy.m */; };
+		9BCDF7B91B0E7D9900C71D8F /* SlingShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7B81B0E7D9900C71D8F /* SlingShot.m */; };
+		9BCDF7BC1B0E8A8100C71D8F /* Pebble.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,12 @@
 		9BCDF7A11B0E691500C71D8F /* SlingShotterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlingShotterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BCDF7A61B0E691500C71D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BCDF7A71B0E691500C71D8F /* SlingShotterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlingShotterTests.m; sourceTree = "<group>"; };
+		9BCDF7B11B0E7D0400C71D8F /* BadGuy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadGuy.h; sourceTree = "<group>"; };
+		9BCDF7B21B0E7D0400C71D8F /* BadGuy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadGuy.m; sourceTree = "<group>"; };
+		9BCDF7B71B0E7D9900C71D8F /* SlingShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlingShot.h; sourceTree = "<group>"; };
+		9BCDF7B81B0E7D9900C71D8F /* SlingShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlingShot.m; sourceTree = "<group>"; };
+		9BCDF7BA1B0E8A8100C71D8F /* Pebble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pebble.h; sourceTree = "<group>"; };
+		9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pebble.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +95,11 @@
 		9BCDF7851B0E691500C71D8F /* SlingShotter */ = {
 			isa = PBXGroup;
 			children = (
+				9BCDF7B61B0E7D3A00C71D8F /* ViewController */,
+				9BCDF7B51B0E7D2800C71D8F /* Scenes */,
+				9BCDF7B41B0E7D1200C71D8F /* Characters */,
 				9BCDF78A1B0E691500C71D8F /* AppDelegate.h */,
 				9BCDF78B1B0E691500C71D8F /* AppDelegate.m */,
-				9BCDF78D1B0E691500C71D8F /* GameScene.h */,
-				9BCDF78E1B0E691500C71D8F /* GameScene.m */,
-				9BCDF7901B0E691500C71D8F /* GameScene.sks */,
-				9BCDF7921B0E691500C71D8F /* GameViewController.h */,
-				9BCDF7931B0E691500C71D8F /* GameViewController.m */,
 				9BCDF7951B0E691500C71D8F /* Main.storyboard */,
 				9BCDF7981B0E691500C71D8F /* Images.xcassets */,
 				9BCDF79A1B0E691500C71D8F /* LaunchScreen.xib */,
@@ -125,6 +132,38 @@
 				9BCDF7A61B0E691500C71D8F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9BCDF7B41B0E7D1200C71D8F /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7B11B0E7D0400C71D8F /* BadGuy.h */,
+				9BCDF7B21B0E7D0400C71D8F /* BadGuy.m */,
+				9BCDF7B71B0E7D9900C71D8F /* SlingShot.h */,
+				9BCDF7B81B0E7D9900C71D8F /* SlingShot.m */,
+				9BCDF7BA1B0E8A8100C71D8F /* Pebble.h */,
+				9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		9BCDF7B51B0E7D2800C71D8F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF78D1B0E691500C71D8F /* GameScene.h */,
+				9BCDF78E1B0E691500C71D8F /* GameScene.m */,
+				9BCDF7901B0E691500C71D8F /* GameScene.sks */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		9BCDF7B61B0E7D3A00C71D8F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7921B0E691500C71D8F /* GameViewController.h */,
+				9BCDF7931B0E691500C71D8F /* GameViewController.m */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +268,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BCDF7941B0E691500C71D8F /* GameViewController.m in Sources */,
+				9BCDF7B31B0E7D0400C71D8F /* BadGuy.m in Sources */,
+				9BCDF7BC1B0E8A8100C71D8F /* Pebble.m in Sources */,
 				9BCDF78C1B0E691500C71D8F /* AppDelegate.m in Sources */,
 				9BCDF78F1B0E691500C71D8F /* GameScene.m in Sources */,
 				9BCDF7891B0E691500C71D8F /* main.m in Sources */,
+				9BCDF7B91B0E7D9900C71D8F /* SlingShot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

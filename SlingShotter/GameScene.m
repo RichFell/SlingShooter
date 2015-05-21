@@ -7,38 +7,37 @@
 //
 
 #import "GameScene.h"
+#import "SlingShot.h"
 
 @implementation GameScene
+{
+    CGPoint startPull;
+    BOOL isShooting;
+}
 
 -(void)didMoveToView:(SKView *)view {
-    /* Setup your scene here */
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    
-    myLabel.text = @"Hello, World!";
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
-    
-    [self addChild:myLabel];
+    self.slingshot = [SlingShot slingshotInRect:self.frame];
+    [self addChild:self.slingshot];
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.xScale = 0.5;
-        sprite.yScale = 0.5;
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+
+    UITouch *touch = [[touches allObjects] firstObject];
+
+    if (CGRectContainsPoint(self.slingshot.frame, [touch locationInNode:self])) {
+        isShooting = true;
+    }
+    else {
+        isShooting = false;
+    }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (isShooting) {
+        UITouch *lastTouch = [[touches allObjects]lastObject];
+        [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
     }
 }
 
