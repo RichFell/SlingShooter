@@ -26,9 +26,10 @@
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
                                                        center:CGPointMake(CGRectGetMidX(self.frame),
                                                                           CGRectGetMidY(self.frame))];
-    self.physicsBody.dynamic = YES;
-    self.physicsBody.friction = 0.1;
+    self.physicsBody.friction = 1.0;
+    self.physicsBody.mass = 3.0;
     self.physicsBody.velocity = vector;
+    [self addBitMasks];
     self.physicsBody.affectedByGravity = false;
     [self.physicsBody applyImpulse:vector];
 }

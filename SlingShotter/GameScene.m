@@ -10,6 +10,7 @@
 #import "SlingShot.h"
 #import "BadGuy.h"
 #import "CollisionManager.h"
+#import "Constants.h"
 
 @implementation GameScene
 {
@@ -17,17 +18,32 @@
     BOOL isShooting;
 }
 
--(void)didMoveToView:(SKView *)view {
-    self.slingshot = [SlingShot slingshotInRect:self.frame];
-    [self addChild:self.slingshot];
-    self.collisionManager = [CollisionManager new];
-    [BadGuy dropABadGuyOnScene:self];
-    [self setupScenePhysicsBody];
+//static CGFloat const buffer = 0.0;
+
+-(instancetype)initWithSize:(CGSize)size {
+    if (self = [super initWithSize:size]) {
+        [self setupScenePhysicsBody];
+        self.slingshot = [SlingShot slingshotInRect:self.frame];
+        [self addChild:self.slingshot];
+        self.collisionManager = [CollisionManager new];
+        [BadGuy dropABadGuyOnScene:self];
+        [BadGuy dropABadGuyOnScene:self];
+    }
+    return self;
 }
 
+
+
 -(void)setupScenePhysicsBody {
-    self.scaleMode = SKSceneScaleModeAspectFit;
-    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+//    self.scaleMode = SKSceneScaleModeAspectFill;
+//    CGRect newFrame = CGRectMake(-buffer, -buffer, CGRectGetWidth(self.frame) + buffer, CGRectGetHeight(self.frame) + buffer);
+//    SKPhysicsBody *border = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+//    self.physicsBody = border;
+//    self.physicsBody.contactTestBitMask = kPebbleCategory | kBadGuyCategory;
+//    self.physicsBody.collisionBitMask = kPebbleCategory | kBadGuyCategory;
+//    self.physicsBody.categoryBitMask = kSceneCategory;
+//    self.physicsBody.friction = 0.0f;
+    self.physicsWorld.contactDelegate = self.collisionManager;
 }
 
 #pragma mark - Touches Methods

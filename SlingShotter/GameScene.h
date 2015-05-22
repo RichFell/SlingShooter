@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 @class SlingShot, CollisionManager;
 
-@interface GameScene : SKScene
+@interface GameScene : SKScene<SKPhysicsContactDelegate>
 
 @property SlingShot *slingshot;
 @property CollisionManager *collisionManager;

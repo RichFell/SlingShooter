@@ -8,6 +8,7 @@
 
 #import "BadGuy.h"
 #import "Constants.h"
+#import "CollisionManager.h"
 
 @implementation BadGuy
 
@@ -25,19 +26,19 @@
 
 //Returns a random CGPoint for originally positioning the BadGuy
 -(CGPoint)randomPosition {
-    CGFloat ranX = arc4random_uniform(10);
-    CGFloat ranXDen = arc4random_uniform(10);
-    CGFloat ranDen = ranX/ranXDen;
-    ranDen = ranDen > 1.0 ? ranDen - 1.0 : ranDen;
-    return CGPointMake(CGRectGetWidth(self.scene.frame) * .5, CGRectGetHeight(self.scene.frame)*.85);
+    srand48(time(0));
+    float val = drand48();
+    float val2 = (((float) rand() / RAND_MAX) * .25) + .75;;
+    NSLog(@"val: %.0000f val2: %.0000f", val, val2);
+    return CGPointMake(CGRectGetWidth(self.scene.frame) * val, CGRectGetHeight(self.scene.frame) * val2);
 }
 
 //Adds the physicsBody, and moves the BadGuy towards the bottom
 -(void)moveToKill {
-    CGVector vector = CGVectorMake(2, -4);
+    CGVector vector = CGVectorMake(-2, -2);
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
                                                        center:CGPointMake(CGRectGetMidX(self.frame),
-                                                                          CGRectGetMidY(self.frame))];
+                                                                        CGRectGetMidY(self.frame))];
     [self addBitMasks];
     self.physicsBody.dynamic = YES;
     self.physicsBody.friction = 0.1;
