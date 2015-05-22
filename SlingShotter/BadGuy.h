@@ -10,4 +10,6 @@
 
 @interface BadGuy : SKSpriteNode
 
++(void)dropABadGuyOnScene:(SKScene *)scene;
+
 @end

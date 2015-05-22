@@ -8,6 +8,8 @@
 
 #import "GameScene.h"
 #import "SlingShot.h"
+#import "BadGuy.h"
+#import "CollisionManager.h"
 
 @implementation GameScene
 {
@@ -18,14 +20,21 @@
 -(void)didMoveToView:(SKView *)view {
     self.slingshot = [SlingShot slingshotInRect:self.frame];
     [self addChild:self.slingshot];
-
+    self.collisionManager = [CollisionManager new];
+    [BadGuy dropABadGuyOnScene:self];
+    [self setupScenePhysicsBody];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
+-(void)setupScenePhysicsBody {
+    self.scaleMode = SKSceneScaleModeAspectFit;
+    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+}
 
+#pragma mark - Touches Methods
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[touches allObjects] firstObject];
 
+    //If the user touches in the frame of the slingshot, then we want to be able to fire the Pebble
     if (CGRectContainsPoint(self.slingshot.frame, [touch locationInNode:self])) {
         isShooting = true;
     }

@@ -22,7 +22,11 @@
 }
 
 -(void)firePebbleFromPosition:(CGPoint)fromPosition {
-
+    [Pebble pebbleInScene:self.scene
+                              fromPosition:CGPointMake(CGRectGetMidX(self.frame),
+                                                       CGRectGetMidY(self.frame))
+                                 withForce:1.0
+                               inDirection:fromPosition];
     
 }
 

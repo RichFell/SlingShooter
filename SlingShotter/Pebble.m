@@ -14,20 +14,22 @@
     SKTexture *texture = [SKTexture textureWithImageNamed:@"Spaceship"];
     CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30, CGRectGetWidth(scene.frame)/30);
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture color:[UIColor new] size:size];
-
-    pebble.position = position;
+    pebble.position = direction;
     [scene addChild:pebble];
     [pebble firePebbleFromPosition:position towardsPosition:direction];
 }
 
 -(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition{
-    CGPoint endingPoint = CGPointMake(endingPosition.x, endingPosition.y);
-    CGVector vector = CGVectorMake(endingPosition.x - startingPosition.x,
-                                   endingPosition.y - startingPosition.y);
-
-    SKAction *actionMove = [SKAction moveTo:endingPoint duration:0.5];
-    SKAction *actionMoveDone = [SKAction removeFromParent];
-    [self runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+    CGVector vector = CGVectorMake(startingPosition.x - endingPosition.x,
+                                   startingPosition.y - endingPosition.y);
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
+                                                       center:CGPointMake(CGRectGetMidX(self.frame),
+                                                                          CGRectGetMidY(self.frame))];
+    self.physicsBody.dynamic = YES;
+    self.physicsBody.friction = 0.1;
+    self.physicsBody.velocity = vector;
+    self.physicsBody.affectedByGravity = false;
+    [self.physicsBody applyImpulse:vector];
 }
 
 @end
