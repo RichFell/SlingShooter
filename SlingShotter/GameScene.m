@@ -14,14 +14,16 @@
 
 @implementation GameScene
 {
+#pragma mark - Local Variables
     CGPoint startPull;
     BOOL isShooting;
     NSInteger spawnCount;
-
-
 }
 
+#pragma mark - static variables
+static NSInteger const totalSpawns = 5;
 static CGFloat const buffer = 50.0;
+static NSTimeInterval waitTime = 1.0;
 
 -(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -38,16 +40,31 @@ static CGFloat const buffer = 50.0;
 }
 
 -(void)addBadGuysLoop {
-    id wait = [SKAction waitForDuration:4.5];
-    id run = [SKAction runBlock:^{
-        ++spawnCount;
-        for (NSInteger i = 0; i < spawnCount; i++) {
-             NSLog(@"times ran: %ld", (long)spawnCount);
+    SKAction *wait = [SKAction waitForDuration:4.5];
+    SKAction *run = [SKAction runBlock:^{
+        NSInteger numberToCreate = ++spawnCount <= totalSpawns ? spawnCount : totalSpawns;
+        for (NSInteger i = 0; i < numberToCreate; i++) {
             [BadGuy dropABadGuyOnScene:self];
+            if (i % 4 == 0) {
+                [self addAnotherWave];
+            }
         }
     }];
     [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, run]]]];
 }
+
+-(void)addAnotherGroupForDuration:(NSTimeInterval)duration {
+
+}
+
+-(void)addAnotherWave {
+    SKAction *wait = [SKAction waitForDuration:waitTime];
+    SKAction *run = [SKAction runBlock:^{
+        [self addBadGuysLoop];
+    }];
+    [self runAction:[SKAction sequence:@[wait, run]]];
+}
+
 
 -(void)addBackgroundImageForSize:(CGSize)size {
     SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"field"];
@@ -65,7 +82,7 @@ static CGFloat const buffer = 50.0;
     self.physicsBody = border;
     self.physicsBody.contactTestBitMask = kPebbleCategory | kBadGuyCategory;
     self.physicsBody.collisionBitMask = kPebbleCategory | kBadGuyCategory;
-    self.physicsBody.categoryBitMask = kSceneCategory;
+    self.physicsBody.categoryBitMask = kBorderCategory;
     self.physicsBody.friction = 0.0f;
     self.collisionManager = [CollisionManager new]; //Using the CollisionManager to house all of the logic for how to handle collisions.
     self.physicsWorld.contactDelegate = self.collisionManager;

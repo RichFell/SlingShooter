@@ -39,8 +39,12 @@
             [secondBody.node removeFromParent];
         }
     }
-    else if ((firstBody.categoryBitMask & kBadGuyCategory) != 0) {
+    else if ((firstBody.categoryBitMask & kBadGuyCategory) != 0
+             && (secondBody.categoryBitMask & kBorderCategory) )  {
         [firstBody.node removeFromParent];
+        if (contact.contactPoint.y < 0.0) {
+             NSLog(@"BadGuy hit the bottom yo!");
+        }
     }
 }
 

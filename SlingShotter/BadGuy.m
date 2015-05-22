@@ -31,22 +31,11 @@
 -(CGPoint)randomPosition {
     srand48(time(0));
     NSArray *xArray = @[@.75, @.50, @.85, @.65, @.95, @.45, @.25, @.90, @.10];
-    NSArray *yArray = @[@.75, @.80, @.90, @.85, @.95];
+    NSArray *yArray = @[@1.0, @1.0, @1.0, @1.0, @1.0, @1.0, @1.0, @1.0];
     float val = [xArray[arc4random_uniform(8)]floatValue];
-    float val2 = [yArray[arc4random_uniform(5)]floatValue];
-    NSLog(@"val: %.0000f val2: %.0000f", val, val2);
+    float val2 = [yArray[arc4random_uniform(7)]floatValue];
     return CGPointMake(CGRectGetWidth(self.scene.frame) * val,
                        CGRectGetHeight(self.scene.frame) * val2);
-}
-
--(float)randomY {
-    NSArray *floatArray = @[@.75, @.80, @.90, @.85, @.95];
-    return [floatArray[arc4random_uniform(5)]floatValue];
-}
-
--(float)randomX {
-    NSArray *floatArray = @[@.75, @.50, @.85, @.65, @.95, @.45, @.25, @.90, @.10];
-    return [floatArray[arc4random_uniform(8)]floatValue];
 }
 
 //Adds the physicsBody, and moves the BadGuy towards the bottom
@@ -67,7 +56,7 @@
 //Setup the BitMasks for the BadGuy
 -(void)addBitMasks {
     self.physicsBody.categoryBitMask = kBadGuyCategory;
-    self.physicsBody.collisionBitMask = kPebbleCategory | kSceneCategory;
-    self.physicsBody.contactTestBitMask = kPebbleCategory | kSceneCategory;
+    self.physicsBody.collisionBitMask = kPebbleCategory | kBorderCategory;
+    self.physicsBody.contactTestBitMask = kPebbleCategory | kBorderCategory;
 }
 @end

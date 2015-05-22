@@ -10,7 +10,7 @@
 
 #pragma mark - bit masks
 
-extern uint32_t const kSceneCategory;
+extern uint32_t const kBorderCategory;
 extern uint32_t const kPebbleCategory;
 extern uint32_t const kBadGuyCategory;
 
