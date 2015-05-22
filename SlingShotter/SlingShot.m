@@ -8,9 +8,11 @@
 
 #import "SlingShot.h"
 #import "Pebble.h"
+#import "Constants.h"
 
 @implementation SlingShot
 
+#pragma mark - Class Initializer
 +(instancetype)slingshotInRect:(CGRect)rect{
 
     SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: @"Spaceship"]];
@@ -21,6 +23,7 @@
     return slingshot;
 }
 
+#pragma mark - Instance Methods
 -(void)firePebbleFromPosition:(CGPoint)fromPosition {
     [Pebble pebbleInScene:self.scene
                               fromPosition:CGPointMake(CGRectGetMidX(self.frame),

@@ -7,6 +7,7 @@
 //
 
 #import "Pebble.h"
+#import "Constants.h"
 
 @implementation Pebble
 
@@ -30,6 +31,12 @@
     self.physicsBody.velocity = vector;
     self.physicsBody.affectedByGravity = false;
     [self.physicsBody applyImpulse:vector];
+}
+
+-(void)addBitMasks {
+    self.physicsBody.categoryBitMask = kPebbleCategory;
+    self.physicsBody.collisionBitMask = kBadGuyCategory | kSceneCategory;
+    self.physicsBody.contactTestBitMask = kBadGuyCategory | kSceneCategory;
 }
 
 @end
