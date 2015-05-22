@@ -7,9 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-@class SlingShot, CollisionManager;
+#import "CollisionManager.h"
+@class SlingShot;
 
-@interface GameScene : SKScene<SKPhysicsContactDelegate>
+@interface GameScene : SKScene<CollisionManagerDelegate>
 
 @property SlingShot *slingshot;
 @property CollisionManager *collisionManager;

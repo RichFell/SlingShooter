@@ -8,7 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+@class CollisionManager, BadGuy;
+
+@protocol CollisionManagerDelegate <NSObject>
+
+-(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager;
+
+@end
 
 @interface CollisionManager : NSObject<SKPhysicsContactDelegate>
+
+@property id<CollisionManagerDelegate>delegate;
 
 @end

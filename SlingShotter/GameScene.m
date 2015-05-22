@@ -21,9 +21,9 @@
 }
 
 #pragma mark - static variables
-static NSInteger const totalSpawns = 5;
+//static NSInteger const totalSpawns = 3;
 static CGFloat const buffer = 50.0;
-static NSTimeInterval waitTime = 1.0;
+//static NSTimeInterval waitTime = 1.0;
 
 -(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -42,25 +42,18 @@ static NSTimeInterval waitTime = 1.0;
 -(void)addBadGuysLoop {
     SKAction *wait = [SKAction waitForDuration:4.5];
     SKAction *run = [SKAction runBlock:^{
-        NSInteger numberToCreate = ++spawnCount <= totalSpawns ? spawnCount : totalSpawns;
-        for (NSInteger i = 0; i < numberToCreate; i++) {
-            [BadGuy dropABadGuyOnScene:self];
-            if (i % 4 == 0) {
-                [self addAnotherWave];
-            }
+        ++spawnCount;
+        for (NSInteger i = 0; i <= spawnCount; i++) {
+            [self addAnotheBadguyAfterDelay:i];
         }
     }];
     [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, run]]]];
 }
 
--(void)addAnotherGroupForDuration:(NSTimeInterval)duration {
-
-}
-
--(void)addAnotherWave {
-    SKAction *wait = [SKAction waitForDuration:waitTime];
+-(void)addAnotheBadguyAfterDelay:(NSInteger)delay {
+    SKAction *wait = [SKAction waitForDuration:delay];
     SKAction *run = [SKAction runBlock:^{
-        [self addBadGuysLoop];
+        [BadGuy dropABadGuyOnScene:self];
     }];
     [self runAction:[SKAction sequence:@[wait, run]]];
 }
@@ -85,6 +78,7 @@ static NSTimeInterval waitTime = 1.0;
     self.physicsBody.categoryBitMask = kBorderCategory;
     self.physicsBody.friction = 0.0f;
     self.collisionManager = [CollisionManager new]; //Using the CollisionManager to house all of the logic for how to handle collisions.
+    self.collisionManager.delegate = self;
     self.physicsWorld.contactDelegate = self.collisionManager;
 }
 
@@ -106,6 +100,11 @@ static NSTimeInterval waitTime = 1.0;
         UITouch *lastTouch = [[touches allObjects]lastObject];
         [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
     }
+}
+
+#pragma mark - CollisionManagerDelegate methods
+-(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
+    self.scene.view.paused = YES;
 }
 
 @end

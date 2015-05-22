@@ -30,12 +30,10 @@
 //Returns a random CGPoint for originally positioning the BadGuy
 -(CGPoint)randomPosition {
     srand48(time(0));
-    NSArray *xArray = @[@.75, @.50, @.85, @.65, @.95, @.45, @.25, @.90, @.10];
-    NSArray *yArray = @[@1.0, @1.0, @1.0, @1.0, @1.0, @1.0, @1.0, @1.0];
-    float val = [xArray[arc4random_uniform(8)]floatValue];
-    float val2 = [yArray[arc4random_uniform(7)]floatValue];
+    float width = CGRectGetWidth(self.frame);
+    float val = arc4random_uniform(width)/width;
     return CGPointMake(CGRectGetWidth(self.scene.frame) * val,
-                       CGRectGetHeight(self.scene.frame) * val2);
+                       CGRectGetHeight(self.scene.frame));
 }
 
 //Adds the physicsBody, and moves the BadGuy towards the bottom

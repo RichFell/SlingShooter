@@ -44,6 +44,7 @@
         [firstBody.node removeFromParent];
         if (contact.contactPoint.y < 0.0) {
              NSLog(@"BadGuy hit the bottom yo!");
+            [self.delegate collisionManagerBadGuyHitBottom:self];
         }
     }
 }
