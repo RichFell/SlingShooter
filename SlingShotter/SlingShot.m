@@ -16,7 +16,7 @@
 +(instancetype)slingshotInRect:(CGRect)rect{
 
     SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: @"Spaceship"]];
-    CGSize size = CGSizeMake(CGRectGetWidth(rect)/15, CGRectGetHeight(rect)/10);
+    CGSize size = CGSizeMake(CGRectGetWidth(rect)/5, CGRectGetHeight(rect)/4);
 
     SlingShot *slingshot = [[SlingShot alloc]initWithTexture:texture color:[UIColor new] size:size];
     slingshot.position = CGPointMake(CGRectGetWidth(rect)/2, CGRectGetHeight(rect)/6);

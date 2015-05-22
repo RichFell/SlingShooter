@@ -15,6 +15,7 @@
     SKTexture *texture = [SKTexture textureWithImageNamed:@"Spaceship"];
     CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30, CGRectGetWidth(scene.frame)/30);
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture color:[UIColor new] size:size];
+    pebble.name = kPebbleName;
     pebble.position = direction;
     [scene addChild:pebble];
     [pebble firePebbleFromPosition:position towardsPosition:direction];
@@ -26,9 +27,9 @@
 
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
                                                        center:self.inputView.center];
-    self.physicsBody.friction = 1.0;
-    self.physicsBody.mass = 3.0;
-    self.physicsBody.velocity = vector;
+//    self.physicsBody.friction = 0.0;
+    self.physicsBody.mass = 0.1;
+//    self.physicsBody.velocity = vector;
     [self addBitMasks];
     self.physicsBody.affectedByGravity = NO;
     [self.physicsBody applyImpulse:vector];

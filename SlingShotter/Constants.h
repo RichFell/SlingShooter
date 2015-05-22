@@ -13,3 +13,10 @@
 extern uint32_t const kSceneCategory;
 extern uint32_t const kPebbleCategory;
 extern uint32_t const kBadGuyCategory;
+
+
+#pragma mark - Node names
+
+extern NSString *const kPebbleName;
+extern NSString *const kBadGuyName;
+extern NSString *const kBorderName;

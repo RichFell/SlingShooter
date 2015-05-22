@@ -14,10 +14,11 @@
 
 +(void)dropABadGuyOnScene:(SKScene *)scene {
     SKTexture *texture = [SKTexture textureWithImageNamed:@"Spaceship"];
-    CGSize size = CGSizeMake(30.0, 40.0);
+    CGSize size = CGSizeMake(50.0, 50.0);
     BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture
                                               color:[UIColor new]
                                                size:size];
+    badGuy.name = kBadGuyName;
     [scene addChild:badGuy];
 
     badGuy.position = [badGuy randomPosition];
@@ -54,12 +55,11 @@
     CGVector vector = CGVectorMake(destination.x - CGRectGetMidX(self.frame),
                                    destination.y - CGRectGetMidY(self.frame));
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
-                                                       center:CGPointMake(CGRectGetMidX(self.frame),
-                                                                        CGRectGetMidY(self.frame))];
+                                                       center:self.inputView.center];
     [self addBitMasks];
     self.physicsBody.dynamic = YES;
-    self.physicsBody.mass = 2.0;
-    self.physicsBody.friction = 4.0;
+    self.physicsBody.mass = 4.0;
+    self.physicsBody.friction = 5.0;
     self.physicsBody.affectedByGravity = false;
     [self.physicsBody applyImpulse:vector];
 }

@@ -33,15 +33,14 @@
     }
 
     // 2
-    if ((firstBody.categoryBitMask & kPebbleCategory) != 0 &&
-        (secondBody.categoryBitMask & kBadGuyCategory) != 0)
-    {
-        [firstBody.node removeFromParent];
-        
-        if ([firstBody.node isKindOfClass:[Pebble class]]) {
-            NSLog(@"Pebble hit bad guy");
+    if ((firstBody.categoryBitMask & kPebbleCategory) != 0){
+         [firstBody.node removeFromParent];
+        if ((secondBody.categoryBitMask & kBadGuyCategory) != 0) {
+            [secondBody.node removeFromParent];
         }
-//            [self projectile:(SKSpriteNode *) firstBody.node didCollideWithMonster:(SKSpriteNode *) secondBody.node];
+    }
+    else if ((firstBody.categoryBitMask & kBadGuyCategory) != 0) {
+        [firstBody.node removeFromParent];
     }
 }
 

@@ -16,8 +16,8 @@
 {
     CGPoint startPull;
     BOOL isShooting;
-    CFTimeInterval lastUpdateTime;
-    CFTimeInterval timeSinceLastBadGuySpawn;
+    NSInteger spawnCount;
+
 
 }
 
@@ -25,38 +25,49 @@ static CGFloat const buffer = 50.0;
 
 -(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
-//        [self addBackgroundImageForSize:size];
+        [self addBackgroundImageForSize:size];
         [self setupScenePhysicsBody];
         self.slingshot = [SlingShot slingshotInRect:self.frame];
         [self addChild:self.slingshot];
-        self.collisionManager = [CollisionManager new];
         [BadGuy dropABadGuyOnScene:self];
         [BadGuy dropABadGuyOnScene:self];
+        spawnCount = 0;
+        [self addBadGuysLoop];
     }
     return self;
 }
 
--(void)update:(NSTimeInterval)currentTime {
-//    NSLog(@"%.f", currentTime);
+-(void)addBadGuysLoop {
+    id wait = [SKAction waitForDuration:4.5];
+    id run = [SKAction runBlock:^{
+        ++spawnCount;
+        for (NSInteger i = 0; i < spawnCount; i++) {
+             NSLog(@"times ran: %ld", (long)spawnCount);
+            [BadGuy dropABadGuyOnScene:self];
+        }
+    }];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, run]]]];
 }
 
 -(void)addBackgroundImageForSize:(CGSize)size {
     SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"field"];
+    backgroundNode.name = kBorderName;
     backgroundNode.position = CGPointMake(size.width/2, size.height/2);
     backgroundNode.size = size;
     [self addChild:backgroundNode];
 }
--(void)setupScenePhysicsBody {
+-(void)setupScenePhysicsBody{
+
+    //Add the physics body to the scene, so that there will be a boundary around the scene we can use to delete nodes, and things once they collide.
     self.scaleMode = SKSceneScaleModeFill;
-//    CGRect newFrame = CGRectMake(-buffer, -buffer, CGRectGetWidth(self.frame) + buffer, CGRectGetHeight(self.frame) + buffer);
-    CGRect newFrame = CGRectMake(0.0, 0.0, 368.0, 570.0);
+    CGRect newFrame = CGRectMake(-buffer, -buffer, CGRectGetWidth(self.frame) + (buffer * 2), CGRectGetHeight(self.frame) + (buffer * 2));
     SKPhysicsBody *border = [SKPhysicsBody bodyWithEdgeLoopFromRect:newFrame];
-    
     self.physicsBody = border;
-//    self.physicsBody.contactTestBitMask = kPebbleCategory | kBadGuyCategory;
-//    self.physicsBody.collisionBitMask = kPebbleCategory | kBadGuyCategory;
-//    self.physicsBody.categoryBitMask = kSceneCategory;
-//    self.physicsBody.friction = 0.0f;
+    self.physicsBody.contactTestBitMask = kPebbleCategory | kBadGuyCategory;
+    self.physicsBody.collisionBitMask = kPebbleCategory | kBadGuyCategory;
+    self.physicsBody.categoryBitMask = kSceneCategory;
+    self.physicsBody.friction = 0.0f;
+    self.collisionManager = [CollisionManager new]; //Using the CollisionManager to house all of the logic for how to handle collisions.
     self.physicsWorld.contactDelegate = self.collisionManager;
 }
 
