@@ -15,7 +15,9 @@
 +(void)dropABadGuyOnScene:(SKScene *)scene {
     SKTexture *texture = [SKTexture textureWithImageNamed:@"Spaceship"];
     CGSize size = CGSizeMake(30.0, 40.0);
-    BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture color:[UIColor new] size:size];
+    BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture
+                                              color:[UIColor new]
+                                               size:size];
     [scene addChild:badGuy];
 
     badGuy.position = [badGuy randomPosition];
@@ -27,21 +29,37 @@
 //Returns a random CGPoint for originally positioning the BadGuy
 -(CGPoint)randomPosition {
     srand48(time(0));
-    float val = drand48();
-    float val2 = (((float) rand() / RAND_MAX) * .25) + .75;;
+    NSArray *xArray = @[@.75, @.50, @.85, @.65, @.95, @.45, @.25, @.90, @.10];
+    NSArray *yArray = @[@.75, @.80, @.90, @.85, @.95];
+    float val = [xArray[arc4random_uniform(8)]floatValue];
+    float val2 = [yArray[arc4random_uniform(5)]floatValue];
     NSLog(@"val: %.0000f val2: %.0000f", val, val2);
-    return CGPointMake(CGRectGetWidth(self.scene.frame) * val, CGRectGetHeight(self.scene.frame) * val2);
+    return CGPointMake(CGRectGetWidth(self.scene.frame) * val,
+                       CGRectGetHeight(self.scene.frame) * val2);
+}
+
+-(float)randomY {
+    NSArray *floatArray = @[@.75, @.80, @.90, @.85, @.95];
+    return [floatArray[arc4random_uniform(5)]floatValue];
+}
+
+-(float)randomX {
+    NSArray *floatArray = @[@.75, @.50, @.85, @.65, @.95, @.45, @.25, @.90, @.10];
+    return [floatArray[arc4random_uniform(8)]floatValue];
 }
 
 //Adds the physicsBody, and moves the BadGuy towards the bottom
 -(void)moveToKill {
-    CGVector vector = CGVectorMake(-2, -2);
+    CGPoint destination = CGPointMake(CGRectGetMidX(self.frame), 0.0);
+    CGVector vector = CGVectorMake(destination.x - CGRectGetMidX(self.frame),
+                                   destination.y - CGRectGetMidY(self.frame));
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
                                                        center:CGPointMake(CGRectGetMidX(self.frame),
                                                                         CGRectGetMidY(self.frame))];
     [self addBitMasks];
     self.physicsBody.dynamic = YES;
-    self.physicsBody.friction = 0.1;
+    self.physicsBody.mass = 2.0;
+    self.physicsBody.friction = 4.0;
     self.physicsBody.affectedByGravity = false;
     [self.physicsBody applyImpulse:vector];
 }

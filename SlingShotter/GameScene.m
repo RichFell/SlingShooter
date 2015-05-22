@@ -16,12 +16,16 @@
 {
     CGPoint startPull;
     BOOL isShooting;
+    CFTimeInterval lastUpdateTime;
+    CFTimeInterval timeSinceLastBadGuySpawn;
+
 }
 
-//static CGFloat const buffer = 0.0;
+static CGFloat const buffer = 50.0;
 
 -(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
+//        [self addBackgroundImageForSize:size];
         [self setupScenePhysicsBody];
         self.slingshot = [SlingShot slingshotInRect:self.frame];
         [self addChild:self.slingshot];
@@ -32,13 +36,23 @@
     return self;
 }
 
+-(void)update:(NSTimeInterval)currentTime {
+//    NSLog(@"%.f", currentTime);
+}
 
-
+-(void)addBackgroundImageForSize:(CGSize)size {
+    SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"field"];
+    backgroundNode.position = CGPointMake(size.width/2, size.height/2);
+    backgroundNode.size = size;
+    [self addChild:backgroundNode];
+}
 -(void)setupScenePhysicsBody {
-//    self.scaleMode = SKSceneScaleModeAspectFill;
+    self.scaleMode = SKSceneScaleModeFill;
 //    CGRect newFrame = CGRectMake(-buffer, -buffer, CGRectGetWidth(self.frame) + buffer, CGRectGetHeight(self.frame) + buffer);
-//    SKPhysicsBody *border = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-//    self.physicsBody = border;
+    CGRect newFrame = CGRectMake(0.0, 0.0, 368.0, 570.0);
+    SKPhysicsBody *border = [SKPhysicsBody bodyWithEdgeLoopFromRect:newFrame];
+    
+    self.physicsBody = border;
 //    self.physicsBody.contactTestBitMask = kPebbleCategory | kBadGuyCategory;
 //    self.physicsBody.collisionBitMask = kPebbleCategory | kBadGuyCategory;
 //    self.physicsBody.categoryBitMask = kSceneCategory;
@@ -64,10 +78,6 @@
         UITouch *lastTouch = [[touches allObjects]lastObject];
         [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
     }
-}
-
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
 }
 
 @end

@@ -23,14 +23,14 @@
 -(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition{
     CGVector vector = CGVectorMake(startingPosition.x - endingPosition.x,
                                    startingPosition.y - endingPosition.y);
+
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
-                                                       center:CGPointMake(CGRectGetMidX(self.frame),
-                                                                          CGRectGetMidY(self.frame))];
+                                                       center:self.inputView.center];
     self.physicsBody.friction = 1.0;
     self.physicsBody.mass = 3.0;
     self.physicsBody.velocity = vector;
     [self addBitMasks];
-    self.physicsBody.affectedByGravity = false;
+    self.physicsBody.affectedByGravity = NO;
     [self.physicsBody applyImpulse:vector];
 }
 
