@@ -15,8 +15,8 @@
 #pragma mark - Class Initializer
 +(instancetype)slingshotInRect:(CGRect)rect{
 
-    SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: @"Spaceship"]];
-    CGSize size = CGSizeMake(CGRectGetWidth(rect)/5, CGRectGetHeight(rect)/4);
+    SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: @"Slingshot"]];
+    CGSize size = CGSizeMake(80.0, 140.0);
 
     SlingShot *slingshot = [[SlingShot alloc]initWithTexture:texture color:[UIColor new] size:size];
     slingshot.position = CGPointMake(CGRectGetWidth(rect)/2, CGRectGetHeight(rect)/6);
