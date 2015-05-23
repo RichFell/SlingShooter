@@ -38,7 +38,7 @@
 
 #pragma mark - Public Instance methods
 -(void)transitionToANewScene {
-    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionRight duration:0.5];
+    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionRight duration:0.2];
     transition.pausesIncomingScene = YES;
     transition.pausesOutgoingScene = YES;
     self.gameScene = nil;
@@ -55,6 +55,7 @@
     if (shouldEnd) {
         GameOverViewController *gameOVC = [GameOverViewController storyboardInstance];
         gameOVC.delegate = self;
+        gameOVC.killCount = self.gameScene.killCount;
         [self presentViewController:gameOVC animated:true completion:^{
         }];
     }

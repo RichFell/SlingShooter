@@ -7,8 +7,11 @@
 //
 
 #import "GameOverViewController.h"
+#import "UserDefaults.h"
 
 @interface GameOverViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
 
 @end
 
@@ -21,11 +24,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.killCount];
+    [self checkHighScore];
+    self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %ld", [UserDefaults highScore]];
 }
 
+#pragma mark - IBActions
 - (IBAction)restartOnTap:(UIButton *)sender {
     [self.delegate gameOverVC:self restartSelected:YES];
+}
+
+#pragma mark - Helper Methods
+-(void)checkHighScore {
+    if (self.killCount > [UserDefaults highScore] || ![UserDefaults highScore]) {
+        [UserDefaults setHighScore:self.killCount];
+    }
 }
 
 @end

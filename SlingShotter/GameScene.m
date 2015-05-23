@@ -19,7 +19,6 @@
     CGPoint startPull;
     BOOL isShooting;
     NSInteger spawnCount;
-    NSInteger killCount;
 }
 
 #pragma mark - static variables
@@ -36,20 +35,11 @@ static CGFloat const buffer = 50.0;
         [self addChild:self.slingshot];
         [BadGuy dropABadGuyOnScene:self];
         spawnCount = 0;
-        killCount = 0;
+        self.killCount = 0;
         [self addBadGuysLoop];
     }
     return self;
 }
-
-#pragma mark - Public Instance methods
-//-(void)transitionToANewScene {
-//    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionUp duration:1.0];
-//    transition.pausesIncomingScene = YES;
-//    transition.pausesOutgoingScene = YES;
-//    GameScene *newScene = [[GameScene alloc] initWithSize:self.size];
-//    [self.view presentScene:newScene transition:transition];
-//}
 
 #pragma mark - Game Loops
 -(void)addBadGuysLoop {
@@ -123,7 +113,7 @@ static CGFloat const buffer = 50.0;
 }
 
 -(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {
-    [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++killCount]];
+    [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++self.killCount]];
 }
 
 @end

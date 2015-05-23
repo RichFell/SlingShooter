@@ -23,6 +23,7 @@
 		9BCDF7C41B0EDCBC00C71D8F /* CollisionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7C31B0EDCBC00C71D8F /* CollisionManager.m */; };
 		9BCDF7C81B0FF27600C71D8F /* ScoreNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */; };
 		9BCDF7CB1B10ED4100C71D8F /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */; };
+		9BCDF7CF1B11186800C71D8F /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7CE1B11186800C71D8F /* UserDefaults.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreNode.m; sourceTree = "<group>"; };
 		9BCDF7C91B10ED4100C71D8F /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
 		9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
+		9BCDF7CD1B11186800C71D8F /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
+		9BCDF7CE1B11186800C71D8F /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +110,8 @@
 		9BCDF7851B0E691500C71D8F /* SlingShotter */ = {
 			isa = PBXGroup;
 			children = (
+				9BCDF7CC1B11184500C71D8F /* Utilities */,
 				9BCDF7C51B0FF25300C71D8F /* Labels and such */,
-				9BCDF7C11B0EDC9F00C71D8F /* Constants */,
 				9BCDF7BD1B0EC6BE00C71D8F /* CollisionManager */,
 				9BCDF7B61B0E7D3A00C71D8F /* ViewController */,
 				9BCDF7B51B0E7D2800C71D8F /* Scenes */,
@@ -208,6 +211,16 @@
 				9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */,
 			);
 			name = "Labels and such";
+			sourceTree = "<group>";
+		};
+		9BCDF7CC1B11184500C71D8F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7C11B0EDC9F00C71D8F /* Constants */,
+				9BCDF7CD1B11186800C71D8F /* UserDefaults.h */,
+				9BCDF7CE1B11186800C71D8F /* UserDefaults.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +328,7 @@
 				9BCDF7941B0E691500C71D8F /* GameViewController.m in Sources */,
 				9BCDF7B31B0E7D0400C71D8F /* BadGuy.m in Sources */,
 				9BCDF7BC1B0E8A8100C71D8F /* Pebble.m in Sources */,
+				9BCDF7CF1B11186800C71D8F /* UserDefaults.m in Sources */,
 				9BCDF7C41B0EDCBC00C71D8F /* CollisionManager.m in Sources */,
 				9BCDF78C1B0E691500C71D8F /* AppDelegate.m in Sources */,
 				9BCDF7C01B0EC6D900C71D8F /* Constants.m in Sources */,
