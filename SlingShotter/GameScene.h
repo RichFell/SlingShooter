@@ -8,11 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "CollisionManager.h"
-@class SlingShot;
+@class SlingShot, ScoreNode;
 
 @interface GameScene : SKScene<CollisionManagerDelegate>
 
 @property SlingShot *slingshot;
 @property CollisionManager *collisionManager;
+@property ScoreNode *scoreNode;
 
 @end

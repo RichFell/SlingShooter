@@ -11,6 +11,7 @@
 #import "BadGuy.h"
 #import "CollisionManager.h"
 #import "Constants.h"
+#import "ScoreNode.h"
 
 @implementation GameScene
 {
@@ -18,27 +19,29 @@
     CGPoint startPull;
     BOOL isShooting;
     NSInteger spawnCount;
+    NSInteger killCount;
 }
 
 #pragma mark - static variables
-//static NSInteger const totalSpawns = 3;
 static CGFloat const buffer = 50.0;
-//static NSTimeInterval waitTime = 1.0;
 
 -(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         [self addBackgroundImageForSize:size];
+        self.scoreNode = [ScoreNode addScoreBoardToScene:self];
         [self setupScenePhysicsBody];
         self.slingshot = [SlingShot slingshotInRect:self.frame];
         [self addChild:self.slingshot];
         [BadGuy dropABadGuyOnScene:self];
         [BadGuy dropABadGuyOnScene:self];
         spawnCount = 0;
+        killCount = 0;
         [self addBadGuysLoop];
     }
     return self;
 }
 
+#pragma mark - Game Loops
 -(void)addBadGuysLoop {
     SKAction *wait = [SKAction waitForDuration:4.5];
     SKAction *run = [SKAction runBlock:^{
@@ -58,7 +61,7 @@ static CGFloat const buffer = 50.0;
     [self runAction:[SKAction sequence:@[wait, run]]];
 }
 
-
+#pragma mark - Helper Methods
 -(void)addBackgroundImageForSize:(CGSize)size {
     SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"field"];
     backgroundNode.name = kBorderName;
@@ -66,6 +69,7 @@ static CGFloat const buffer = 50.0;
     backgroundNode.size = size;
     [self addChild:backgroundNode];
 }
+
 -(void)setupScenePhysicsBody{
 
     //Add the physics body to the scene, so that there will be a boundary around the scene we can use to delete nodes, and things once they collide.
@@ -105,6 +109,10 @@ static CGFloat const buffer = 50.0;
 #pragma mark - CollisionManagerDelegate methods
 -(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
     self.scene.view.paused = YES;
+}
+
+-(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {
+    [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++killCount]];
 }
 
 @end

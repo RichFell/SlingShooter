@@ -13,6 +13,7 @@
 @protocol CollisionManagerDelegate <NSObject>
 
 -(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager;
+-(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare;
 
 @end
 

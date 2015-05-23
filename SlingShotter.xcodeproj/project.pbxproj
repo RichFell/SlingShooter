@@ -21,6 +21,7 @@
 		9BCDF7BC1B0E8A8100C71D8F /* Pebble.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */; };
 		9BCDF7C01B0EC6D900C71D8F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7BF1B0EC6D900C71D8F /* Constants.m */; };
 		9BCDF7C41B0EDCBC00C71D8F /* CollisionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7C31B0EDCBC00C71D8F /* CollisionManager.m */; };
+		9BCDF7C81B0FF27600C71D8F /* ScoreNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		9BCDF7BF1B0EC6D900C71D8F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9BCDF7C21B0EDCBC00C71D8F /* CollisionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionManager.h; sourceTree = "<group>"; };
 		9BCDF7C31B0EDCBC00C71D8F /* CollisionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionManager.m; sourceTree = "<group>"; };
+		9BCDF7C61B0FF27600C71D8F /* ScoreNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreNode.h; sourceTree = "<group>"; };
+		9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		9BCDF7851B0E691500C71D8F /* SlingShotter */ = {
 			isa = PBXGroup;
 			children = (
+				9BCDF7C51B0FF25300C71D8F /* Labels and such */,
 				9BCDF7C11B0EDC9F00C71D8F /* Constants */,
 				9BCDF7BD1B0EC6BE00C71D8F /* CollisionManager */,
 				9BCDF7B61B0E7D3A00C71D8F /* ViewController */,
@@ -190,6 +194,15 @@
 				9BCDF7BF1B0EC6D900C71D8F /* Constants.m */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		9BCDF7C51B0FF25300C71D8F /* Labels and such */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7C61B0FF27600C71D8F /* ScoreNode.h */,
+				9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */,
+			);
+			name = "Labels and such";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +312,7 @@
 				9BCDF7C41B0EDCBC00C71D8F /* CollisionManager.m in Sources */,
 				9BCDF78C1B0E691500C71D8F /* AppDelegate.m in Sources */,
 				9BCDF7C01B0EC6D900C71D8F /* Constants.m in Sources */,
+				9BCDF7C81B0FF27600C71D8F /* ScoreNode.m in Sources */,
 				9BCDF78F1B0E691500C71D8F /* GameScene.m in Sources */,
 				9BCDF7891B0E691500C71D8F /* main.m in Sources */,
 				9BCDF7B91B0E7D9900C71D8F /* SlingShot.m in Sources */,

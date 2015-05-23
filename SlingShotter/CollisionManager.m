@@ -32,11 +32,11 @@
         secondBody = contact.bodyA;
     }
 
-    // 2
     if ((firstBody.categoryBitMask & kPebbleCategory) != 0){
          [firstBody.node removeFromParent];
         if ((secondBody.categoryBitMask & kBadGuyCategory) != 0) {
             [secondBody.node removeFromParent];
+            [self.delegate collisionManager:self tookOutABaddy:YES];
         }
     }
     else if ((firstBody.categoryBitMask & kBadGuyCategory) != 0
