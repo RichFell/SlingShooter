@@ -29,7 +29,6 @@
 
 //Returns a random CGPoint for originally positioning the BadGuy
 -(CGPoint)randomPosition {
-    srand48(time(0));
     float width = CGRectGetWidth(self.frame);
     float val = arc4random_uniform(width)/width;
     return CGPointMake(CGRectGetWidth(self.scene.frame) * val,
@@ -45,9 +44,9 @@
                                                        center:self.inputView.center];
     [self addBitMasks];
     self.physicsBody.dynamic = YES;
-    self.physicsBody.mass = 4.0;
-    self.physicsBody.friction = 5.0;
-    self.physicsBody.affectedByGravity = false;
+    self.physicsBody.mass =(float)2 + arc4random_uniform(5 - 2 + 1);;
+    self.physicsBody.friction = 1.0;
+    self.physicsBody.affectedByGravity = false; 
     [self.physicsBody applyImpulse:vector];
 }
 
