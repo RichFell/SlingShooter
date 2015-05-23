@@ -7,31 +7,17 @@
 //
 
 #import "GameViewController.h"
-#import "GameScene.h"
-
-@implementation SKScene (Unarchive)
-
-+ (instancetype)unarchiveFromFile:(NSString *)file {
-    /* Retrieve scene file path from the application bundle */
-    NSString *nodePath = [[NSBundle mainBundle] pathForResource:file ofType:@"sks"];
-    /* Unarchive the file to an SKScene object */
-    NSData *data = [NSData dataWithContentsOfFile:nodePath
-                                          options:NSDataReadingMappedIfSafe
-                                            error:nil];
-    NSKeyedUnarchiver *arch = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    [arch setClass:self forClassName:@"SKScene"];
-    SKScene *scene = [arch decodeObjectForKey:NSKeyedArchiveRootObjectKey];
-    [arch finishDecoding];
-    
-    return scene;
-}
-
-@end
+#import "GameOverViewController.h"
 
 @implementation GameViewController
 
 -(void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+    [self showGameScene];
+}
+
+#pragma mark - Present GameScene
+-(void)showGameScene {
 
     // Configure the view.
     SKView * skView = (SKView *)self.view;
@@ -41,36 +27,46 @@
         skView.showsPhysics = YES;
 
         // Create and configure the scene.
-        SKScene * scene = [GameScene sceneWithSize:skView.bounds.size];
-        scene.scaleMode = SKSceneScaleModeAspectFill;
+        self.gameScene = [GameScene sceneWithSize:skView.bounds.size];
+        self.gameScene.scaleMode = SKSceneScaleModeAspectFill;
+        self.gameScene.gameSceneDelegate = self;
 
         // Present the scene.
-        [skView presentScene:scene];
+        [skView presentScene:self.gameScene];
     }
 }
 
-//- (BOOL)shouldAutorotate
-//{
-//    return YES;
-//}
-//
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        return UIInterfaceOrientationMaskAllButUpsideDown;
-//    } else {
-//        return UIInterfaceOrientationMaskAll;
-//    }
-//}
-//
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Release any cached data, images, etc that aren't in use.
-//}
-//
-//- (BOOL)prefersStatusBarHidden {
-//    return YES;
-//}
+#pragma mark - Public Instance methods
+-(void)transitionToANewScene {
+    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionRight duration:0.5];
+    transition.pausesIncomingScene = YES;
+    transition.pausesOutgoingScene = YES;
+    self.gameScene = nil;
+    self.gameScene = [GameScene sceneWithSize:self.view.bounds.size];
+    self.gameScene.gameSceneDelegate = self;
+    self.gameScene.scaleMode = SKSceneScaleModeFill;
+    SKView *skView = (SKView *)self.view;
+    skView.paused = NO;
+    [skView presentScene:self.gameScene transition:transition];
+}
+
+#pragma mark - GameSceneDelegate Method
+-(void)gameScene:(GameScene *)gameScene shouldEndGame:(BOOL)shouldEnd {
+    if (shouldEnd) {
+        GameOverViewController *gameOVC = [GameOverViewController storyboardInstance];
+        gameOVC.delegate = self;
+        [self presentViewController:gameOVC animated:true completion:^{
+        }];
+    }
+}
+
+#pragma mark - GameOverSceneDelegate Method
+-(void)gameOverVC:(GameOverViewController *)vc restartSelected:(BOOL)selection {
+    if (selection) {
+        [vc dismissViewControllerAnimated:YES completion:^{
+            [self transitionToANewScene];
+        }];
+    }
+}
 
 @end

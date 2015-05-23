@@ -25,6 +25,8 @@
 #pragma mark - static variables
 static CGFloat const buffer = 50.0;
 
+
+#pragma mark - initializers
 -(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         [self addBackgroundImageForSize:size];
@@ -33,13 +35,21 @@ static CGFloat const buffer = 50.0;
         self.slingshot = [SlingShot slingshotInRect:self.frame];
         [self addChild:self.slingshot];
         [BadGuy dropABadGuyOnScene:self];
-        [BadGuy dropABadGuyOnScene:self];
         spawnCount = 0;
         killCount = 0;
         [self addBadGuysLoop];
     }
     return self;
 }
+
+#pragma mark - Public Instance methods
+//-(void)transitionToANewScene {
+//    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionUp duration:1.0];
+//    transition.pausesIncomingScene = YES;
+//    transition.pausesOutgoingScene = YES;
+//    GameScene *newScene = [[GameScene alloc] initWithSize:self.size];
+//    [self.view presentScene:newScene transition:transition];
+//}
 
 #pragma mark - Game Loops
 -(void)addBadGuysLoop {
@@ -109,6 +119,7 @@ static CGFloat const buffer = 50.0;
 #pragma mark - CollisionManagerDelegate methods
 -(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
     self.scene.view.paused = YES;
+    [self.gameSceneDelegate gameScene:self shouldEndGame:YES];
 }
 
 -(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {

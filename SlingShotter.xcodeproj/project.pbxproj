@@ -22,6 +22,7 @@
 		9BCDF7C01B0EC6D900C71D8F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7BF1B0EC6D900C71D8F /* Constants.m */; };
 		9BCDF7C41B0EDCBC00C71D8F /* CollisionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7C31B0EDCBC00C71D8F /* CollisionManager.m */; };
 		9BCDF7C81B0FF27600C71D8F /* ScoreNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */; };
+		9BCDF7CB1B10ED4100C71D8F /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		9BCDF7C31B0EDCBC00C71D8F /* CollisionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionManager.m; sourceTree = "<group>"; };
 		9BCDF7C61B0FF27600C71D8F /* ScoreNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreNode.h; sourceTree = "<group>"; };
 		9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreNode.m; sourceTree = "<group>"; };
+		9BCDF7C91B10ED4100C71D8F /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
+		9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 			children = (
 				9BCDF7921B0E691500C71D8F /* GameViewController.h */,
 				9BCDF7931B0E691500C71D8F /* GameViewController.m */,
+				9BCDF7C91B10ED4100C71D8F /* GameOverViewController.h */,
+				9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCDF7CB1B10ED4100C71D8F /* GameOverViewController.m in Sources */,
 				9BCDF7941B0E691500C71D8F /* GameViewController.m in Sources */,
 				9BCDF7B31B0E7D0400C71D8F /* BadGuy.m in Sources */,
 				9BCDF7BC1B0E8A8100C71D8F /* Pebble.m in Sources */,
