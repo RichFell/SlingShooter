@@ -13,7 +13,7 @@
 @implementation BadGuy
 
 +(void)dropABadGuyOnScene:(SKScene *)scene {
-    SKTexture *texture = [SKTexture textureWithImageNamed:@"Spaceship"];
+    SKTexture *texture = [SKTexture textureWithImageNamed:@"Crow"];
     CGSize size = CGSizeMake(50.0, 50.0);
     BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture
                                               color:[UIColor new]

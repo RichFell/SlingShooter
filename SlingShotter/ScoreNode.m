@@ -14,7 +14,7 @@
     CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/5,
                              CGRectGetWidth(scene.frame)/5);
 
-    SKTexture *texture = [SKTexture textureWithImageNamed:@"Metal"];
+    SKTexture *texture = [SKTexture textureWithImageNamed:@"ScoreBoard"];
     ScoreNode *node = [[ScoreNode alloc]initWithTexture:texture
                                                   color:[UIColor lightGrayColor]
                                                    size:size];

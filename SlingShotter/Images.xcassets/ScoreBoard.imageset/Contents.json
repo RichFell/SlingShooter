@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "chalkboard-clipart2.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "111910634.jpg"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
