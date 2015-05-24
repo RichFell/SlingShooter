@@ -12,9 +12,11 @@
 
 @implementation BadGuy
 
+static CGFloat const kSize = 70.0;
+
 +(void)dropABadGuyOnScene:(SKScene *)scene {
     SKTexture *texture = [SKTexture textureWithImageNamed:@"Crow"];
-    CGSize size = CGSizeMake(50.0, 50.0);
+    CGSize size = CGSizeMake(kSize, kSize);
     BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture
                                               color:[UIColor new]
                                                size:size];

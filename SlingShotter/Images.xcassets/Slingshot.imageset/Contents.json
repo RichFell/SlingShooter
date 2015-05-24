@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Slingshot1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Slingshot2_2X.png"
+      "filename" : "Slingshot2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "Slingshot3x.png"
     }
   ],
   "info" : {
