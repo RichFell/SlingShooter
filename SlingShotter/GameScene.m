@@ -19,6 +19,7 @@
     CGPoint startPull;
     BOOL isShooting;
     NSInteger spawnCount;
+    SKShapeNode *line;
 }
 
 #pragma mark - static variables
@@ -94,6 +95,7 @@ static CGFloat const buffer = 50.0;
     if (CGRectContainsPoint(self.slingshot.frame, [touch locationInNode:self])) {
         isShooting = true;
         startPull = [touch locationInNode:self];
+        [self drawStringToPoint:startPull];
     }
     else {
         isShooting = false;
@@ -120,4 +122,17 @@ static CGFloat const buffer = 50.0;
     [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++self.killCount]];
 }
 
+-(void)drawStringToPoint:(CGPoint)endPoint {
+    line = [SKShapeNode node];
+
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(self.slingshot.frame) - 5,
+                                     CGRectGetMidY(self.slingshot.frame) + 5);
+    CGMutablePathRef pathToDraw = CGPathCreateMutable();
+    CGPathMoveToPoint(pathToDraw, NULL, startPoint.x, startPoint.y);
+    CGPathAddLineToPoint(pathToDraw, NULL, endPoint.x, endPoint.y);
+
+    line.path = pathToDraw;
+    line.strokeColor = [UIColor redColor];
+    [self addChild:line];
+}
 @end
