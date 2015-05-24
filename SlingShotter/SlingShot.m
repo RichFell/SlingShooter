@@ -37,13 +37,12 @@ static CGFloat const yBuffer = 10.0;
                                                        CGRectGetMaxY(self.frame) - yBuffer)
                                  withForce:1.0
                                inDirection:fromPosition];
-    [self animateString];
+    [self drawStringToPoint:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - yBuffer)];
     
 }
 
 -(void)drawStringToPoint:(CGPoint)controlPoint {
     if (!line) {
-//        [self.scene removeChildrenInArray:@[line]];
         line = [SKShapeNode node];
         [self.scene addChild:line];
     }
@@ -65,18 +64,6 @@ static CGFloat const yBuffer = 10.0;
     SKAction *pull = [SKAction followPath:path speed:0.4];
     [SKAction runAction:pull onChildWithName:@"Line"];
     CGPathRelease(path);
-}
-
--(void)animateString {
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
-    CGPathAddQuadCurveToPoint(path, NULL, CGRectGetMidX(self.frame),
-                              CGRectGetMaxY(self.frame) - yBuffer,
-                              endPoint.x, endPoint.y);
-    line.path = path;
-    SKAction *spring = [SKAction followPath:path speed:0.4];
-    [SKAction runAction:spring onChildWithName:@"Line"];
-//    SKAction *spring = [];
 }
 
 @end
