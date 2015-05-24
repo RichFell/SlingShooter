@@ -8,6 +8,7 @@
 
 #import "SlingButton.h"
 
+IB_DESIGNABLE
 @implementation SlingButton
 
 -(void)prepareForInterfaceBuilder {
@@ -20,10 +21,10 @@
 
 -(void)setup {
     self.layer.borderWidth = 2.0;
-    self.layer.borderColor = [UIColor yellowColor].CGColor;
-    [self setTintColor:[UIColor yellowColor]];
+    self.layer.borderColor = [UIColor blackColor].CGColor;
+    [self setTintColor:[UIColor blackColor]];
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17.0];
-
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 @end
