@@ -13,6 +13,8 @@
 @implementation SlingShot
 {
     SKShapeNode *line;
+    CGPoint startPoint;
+    CGPoint endPoint;
 }
 
 static CGFloat const yBuffer = 10.0;
@@ -35,6 +37,7 @@ static CGFloat const yBuffer = 10.0;
                                                        CGRectGetMaxY(self.frame) - yBuffer)
                                  withForce:1.0
                                inDirection:fromPosition];
+    [self animateString];
     
 }
 
@@ -43,25 +46,35 @@ static CGFloat const yBuffer = 10.0;
         [self.scene removeChildrenInArray:@[line]];
     }
     line = [SKShapeNode node];
-
-    CGPoint startPoint = CGPointMake(CGRectGetMidX(self.frame) - CGRectGetWidth(self.frame)/3,
-                                     CGRectGetMaxY(self.frame) - yBuffer);
-    CGPoint endPoint = CGPointMake(CGRectGetMidX(self.frame) + CGRectGetWidth(self.frame)/3,
-                                   CGRectGetMaxY(self.frame) - yBuffer);
     CGMutablePathRef path = CGPathCreateMutable();
+    startPoint = CGPointMake(CGRectGetMidX(self.frame) - CGRectGetWidth(self.frame)/3,
+                             CGRectGetMaxY(self.frame) - yBuffer);
+    endPoint = CGPointMake(CGRectGetMidX(self.frame) + CGRectGetWidth(self.frame)/3,
+                           CGRectGetMaxY(self.frame) - yBuffer);
     CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
     CGPathAddQuadCurveToPoint(path, nil,
                               controlPoint.x, controlPoint.y,
                               endPoint.x, endPoint.y);
     CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
-    CGPathCloseSubpath(path);
     line.path = path;
-
+    line.name = @"Line";
     line.strokeColor = [UIColor whiteColor];
     line.lineWidth = 5.0;
     [self.scene addChild:line];
 
     CGPathRelease(path);
+}
+
+-(void)animateString {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
+    CGPathAddQuadCurveToPoint(path, NULL, CGRectGetMidX(self.frame),
+                              CGRectGetMaxY(self.frame) - yBuffer,
+                              endPoint.x, endPoint.y);
+    line.path = path;
+    SKAction *spring = [SKAction followPath:path speed:0.4];
+    [SKAction runAction:spring onChildWithName:@"Line"];
+//    SKAction *spring = [];
 }
 
 @end
