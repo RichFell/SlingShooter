@@ -24,7 +24,7 @@
 
 #pragma mark - static variables
 static CGFloat const buffer = 50.0;
-
+static CGFloat const pullCheck = 10.0;
 
 #pragma mark - initializers
 -(instancetype)initWithSize:(CGSize)size {
@@ -95,18 +95,27 @@ static CGFloat const buffer = 50.0;
     if (CGRectContainsPoint(self.slingshot.frame, [touch locationInNode:self])) {
         isShooting = true;
         startPull = [touch locationInNode:self];
-        [self drawStringToPoint:startPull];
+        [self.slingshot drawStringToPoint:startPull];
     }
     else {
         isShooting = false;
     }
 }
 
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (isShooting) {
+        UITouch *touch = [[touches allObjects]firstObject];
+        [self.slingshot drawStringToPoint:[touch locationInNode:self]];
+    }
+}
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (isShooting) {
         UITouch *lastTouch = [[touches allObjects]lastObject];
-        CGFloat pullLength = startPull.y - [lastTouch locationInNode:self].y;
-        if (pullLength > 10.0) {
+        CGFloat yPullLength = startPull.y - [lastTouch locationInNode:self].y;
+        CGFloat xPullLength = startPull.x - [lastTouch locationInNode:self].x;
+        if (yPullLength > pullCheck || yPullLength < -pullCheck ||
+            xPullLength > pullCheck || xPullLength < -pullCheck) {
             [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
         }
     }
@@ -120,19 +129,5 @@ static CGFloat const buffer = 50.0;
 
 -(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {
     [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++self.killCount]];
-}
-
--(void)drawStringToPoint:(CGPoint)endPoint {
-    line = [SKShapeNode node];
-
-    CGPoint startPoint = CGPointMake(CGRectGetMidX(self.slingshot.frame) - 5,
-                                     CGRectGetMidY(self.slingshot.frame) + 5);
-    CGMutablePathRef pathToDraw = CGPathCreateMutable();
-    CGPathMoveToPoint(pathToDraw, NULL, startPoint.x, startPoint.y);
-    CGPathAddLineToPoint(pathToDraw, NULL, endPoint.x, endPoint.y);
-
-    line.path = pathToDraw;
-    line.strokeColor = [UIColor redColor];
-    [self addChild:line];
 }
 @end

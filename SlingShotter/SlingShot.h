@@ -21,5 +21,5 @@
  */
 -(void)firePebbleFromPosition:(CGPoint)fromPosition;
 
-
+-(void)drawStringToPoint:(CGPoint)controlPoint;
 @end
