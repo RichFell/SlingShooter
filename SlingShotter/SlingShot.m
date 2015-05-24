@@ -37,7 +37,8 @@ static CGFloat const yBuffer = 10.0;
                                                        CGRectGetMaxY(self.frame) - yBuffer)
                                  withForce:1.0
                                inDirection:fromPosition];
-    [self drawStringToPoint:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - yBuffer)];
+    [self drawStringToPoint:CGPointMake(CGRectGetMidX(self.frame),
+                                        CGRectGetMaxY(self.frame) - yBuffer)];
     
 }
 

@@ -13,14 +13,17 @@
 @implementation BadGuy
 
 static CGFloat const kSize = 70.0;
+static NSString *const kImageOne = @"MyCrow";
+static NSString *const kImageTwo = @"MyCrow2";
 
 +(void)dropABadGuyOnScene:(SKScene *)scene {
-    SKTexture *texture = [SKTexture textureWithImageNamed:@"Crow"];
+    SKTexture *texture = [SKTexture textureWithImageNamed:kImageOne];
     CGSize size = CGSizeMake(kSize, kSize);
     BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture
                                               color:[UIColor new]
                                                size:size];
     badGuy.name = kBadGuyName;
+    [badGuy startAnimation];
     [scene addChild:badGuy];
 
     badGuy.position = [badGuy randomPosition];
@@ -50,6 +53,14 @@ static CGFloat const kSize = 70.0;
     self.physicsBody.friction = 1.0;
     self.physicsBody.affectedByGravity = false; 
     [self.physicsBody applyImpulse:vector];
+}
+
+//Animation loop to show like the bird is flying
+-(void)startAnimation {
+    SKTexture *startingText = [SKTexture textureWithImageNamed:kImageOne];
+    SKTexture *secondText = [SKTexture textureWithImageNamed:kImageTwo];
+    SKAction *runAction = [SKAction animateWithTextures:@[startingText, secondText] timePerFrame:0.4];
+    [self runAction:[SKAction repeatActionForever:runAction]];
 }
 
 //Setup the BitMasks for the BadGuy
