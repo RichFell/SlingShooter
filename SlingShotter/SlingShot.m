@@ -42,10 +42,12 @@ static CGFloat const yBuffer = 10.0;
 }
 
 -(void)drawStringToPoint:(CGPoint)controlPoint {
-    if (line) {
-        [self.scene removeChildrenInArray:@[line]];
+    if (!line) {
+//        [self.scene removeChildrenInArray:@[line]];
+        line = [SKShapeNode node];
+        [self.scene addChild:line];
     }
-    line = [SKShapeNode node];
+
     CGMutablePathRef path = CGPathCreateMutable();
     startPoint = CGPointMake(CGRectGetMidX(self.frame) - CGRectGetWidth(self.frame)/3,
                              CGRectGetMaxY(self.frame) - yBuffer);
@@ -60,8 +62,8 @@ static CGFloat const yBuffer = 10.0;
     line.name = @"Line";
     line.strokeColor = [UIColor whiteColor];
     line.lineWidth = 5.0;
-    [self.scene addChild:line];
-
+    SKAction *pull = [SKAction followPath:path speed:0.4];
+    [SKAction runAction:pull onChildWithName:@"Line"];
     CGPathRelease(path);
 }
 
