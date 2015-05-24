@@ -63,7 +63,7 @@ static CGFloat const buffer = 50.0;
 
 #pragma mark - Helper Methods
 -(void)addBackgroundImageForSize:(CGSize)size {
-    SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"field"];
+    SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"Cornfield"];
     backgroundNode.name = kBorderName;
     backgroundNode.position = CGPointMake(size.width/2, size.height/2);
     backgroundNode.size = size;
@@ -93,6 +93,7 @@ static CGFloat const buffer = 50.0;
     //If the user touches in the frame of the slingshot, then we want to be able to fire the Pebble
     if (CGRectContainsPoint(self.slingshot.frame, [touch locationInNode:self])) {
         isShooting = true;
+        startPull = [touch locationInNode:self];
     }
     else {
         isShooting = false;
@@ -102,7 +103,10 @@ static CGFloat const buffer = 50.0;
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (isShooting) {
         UITouch *lastTouch = [[touches allObjects]lastObject];
-        [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
+        CGFloat pullLength = startPull.y - [lastTouch locationInNode:self].y;
+        if (pullLength > 10.0) {
+            [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
+        }
     }
 }
 

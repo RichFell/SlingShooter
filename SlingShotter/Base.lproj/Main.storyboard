@@ -64,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-Rq-CUt">
-                                <rect key="frame" x="125" y="408" width="70" height="30"/>
+                                <rect key="frame" x="125" y="464" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="45Z-9j-ssh"/>
                                     <constraint firstAttribute="height" constant="30" id="hP8-Aw-qk3"/>
@@ -81,7 +81,7 @@
                         <constraints>
                             <constraint firstItem="Omu-Me-AZa" firstAttribute="top" secondItem="0DY-53-HNk" secondAttribute="bottom" constant="31" id="2ew-fP-Ank"/>
                             <constraint firstAttribute="centerX" secondItem="Omu-Me-AZa" secondAttribute="centerX" id="Jzz-au-ixZ"/>
-                            <constraint firstItem="ulN-ai-DAB" firstAttribute="top" secondItem="Hdh-Rq-CUt" secondAttribute="bottom" constant="130" id="RCj-fL-n5S"/>
+                            <constraint firstItem="ulN-ai-DAB" firstAttribute="top" secondItem="Hdh-Rq-CUt" secondAttribute="bottom" constant="74" id="RCj-fL-n5S"/>
                             <constraint firstAttribute="centerX" secondItem="0DY-53-HNk" secondAttribute="centerX" id="SKC-01-VI6"/>
                             <constraint firstAttribute="centerX" secondItem="zAD-kN-Hcs" secondAttribute="centerX" id="YBj-XN-wQf"/>
                             <constraint firstItem="0DY-53-HNk" firstAttribute="top" secondItem="5Bg-lK-Ygn" secondAttribute="bottom" constant="33" id="nkL-ie-VKa"/>

@@ -11,8 +11,8 @@
 @implementation ScoreNode
 
 +(instancetype)addScoreBoardToScene:(SKScene *)scene{
-    CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/5,
-                             CGRectGetWidth(scene.frame)/5);
+    CGSize size = CGSizeMake(100.0,
+                             100.0);
 
     SKTexture *texture = [SKTexture textureWithImageNamed:@"ScoreBoard"];
     ScoreNode *node = [[ScoreNode alloc]initWithTexture:texture
@@ -20,6 +20,7 @@
                                                    size:size];
 
     node.scoreLabel = [SKLabelNode labelNodeWithText:@"FOOOOO"];
+    node.scoreLabel.fontName = @"HelveticaNeue";
     [node.scoreLabel setText:@"0"];
     node.position = CGPointMake((size.width/2) + 10.0,
                                 CGRectGetHeight(scene.frame) - (size.height/2) - 30);

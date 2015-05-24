@@ -12,7 +12,7 @@
 @implementation Pebble
 
 +(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction{
-    SKTexture *texture = [SKTexture textureWithImageNamed:@"Spaceship"];
+    SKTexture *texture = [SKTexture textureWithImageNamed:@"Pebble"];
     CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30, CGRectGetWidth(scene.frame)/30);
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture color:[UIColor new] size:size];
     pebble.name = kPebbleName;
