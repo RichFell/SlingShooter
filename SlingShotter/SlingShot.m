@@ -59,12 +59,39 @@ static CGFloat const yBuffer = 10.0;
                               endPoint.x, endPoint.y);
     CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
     line.path = path;
-    line.name = @"Line";
+    line.name = kLineName;
     line.strokeColor = [UIColor whiteColor];
     line.lineWidth = 5.0;
     SKAction *pull = [SKAction followPath:path speed:0.4];
-    [SKAction runAction:pull onChildWithName:@"Line"];
+    [SKAction runAction:pull onChildWithName:kLineName];
+    [self addSlingForPoint:controlPoint];
     CGPathRelease(path);
+}
+
+-(void)addSlingForPoint:(CGPoint)point {
+    [self checkForSling];
+    CGPoint middleOfSling = CGPointMake(CGRectGetMidX(self.frame),
+                                        CGRectGetMaxY(self.frame) - yBuffer);
+    SKTexture *texture;
+    if (point.x == middleOfSling.x &&
+        point.y == middleOfSling.y) {
+        texture = [SKTexture textureWithImageNamed:@"Sling"];
+    }
+    SKSpriteNode *sling = [[SKSpriteNode alloc] initWithTexture:texture
+                                                          color:[UIColor new]
+                                                           size:CGSizeMake(50.0, 42.0)];
+    sling.position = point;
+    sling.name = kSlingName;
+    [self.scene addChild:sling];
+}
+
+//Pointer to non-const type 'NSString *' with no explicit ownership.
+
+-(void)checkForSling {
+    SKNode *sling = [self.scene childNodeWithName:kSlingName];
+    if (sling) {
+        [self.scene removeChildrenInArray:@[sling]];
+    }
 }
 
 @end

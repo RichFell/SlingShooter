@@ -17,3 +17,5 @@ uint32_t const kBorderCategory     =  0x1 << 3;
 NSString *const kPebbleName = @"Pebble";
 NSString *const kBadGuyName = @"BadGuy";
 NSString *const kBorderName = @"Border";
+NSString *const kLineName = @"Line";
+NSString *const kSlingName = @"Sling";

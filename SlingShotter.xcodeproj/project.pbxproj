@@ -117,7 +117,7 @@
 				9BCDF7BD1B0EC6BE00C71D8F /* CollisionManager */,
 				9BCDF7B61B0E7D3A00C71D8F /* ViewController */,
 				9BCDF7B51B0E7D2800C71D8F /* Scenes */,
-				9BCDF7B41B0E7D1200C71D8F /* Nodes */,
+				9BCDF7B41B0E7D1200C71D8F /* Characters */,
 				9BCDF78A1B0E691500C71D8F /* AppDelegate.h */,
 				9BCDF78B1B0E691500C71D8F /* AppDelegate.m */,
 				9BCDF7951B0E691500C71D8F /* Main.storyboard */,
@@ -154,7 +154,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9BCDF7B41B0E7D1200C71D8F /* Nodes */ = {
+		9BCDF7B41B0E7D1200C71D8F /* Characters */ = {
 			isa = PBXGroup;
 			children = (
 				9BCDF7B11B0E7D0400C71D8F /* BadGuy.h */,
@@ -164,7 +164,7 @@
 				9BCDF7BA1B0E8A8100C71D8F /* Pebble.h */,
 				9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */,
 			);
-			name = Nodes;
+			name = Characters;
 			sourceTree = "<group>";
 		};
 		9BCDF7B51B0E7D2800C71D8F /* Scenes */ = {
