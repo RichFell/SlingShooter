@@ -11,8 +11,10 @@
 
 @implementation Pebble
 
+static NSString *const kImageName = @"Pebble";
+
 +(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction{
-    SKTexture *texture = [SKTexture textureWithImageNamed:@"Pebble"];
+    SKTexture *texture = [SKTexture textureWithImageNamed:kImageName];
     CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30, CGRectGetWidth(scene.frame)/30);
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture color:[UIColor new] size:size];
     pebble.name = kPebbleName;

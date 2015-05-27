@@ -49,17 +49,18 @@ static NSString *const kImageTwo = @"MyCrow2";
                                                        center:self.inputView.center];
     [self addBitMasks];
     self.physicsBody.dynamic = YES;
-    self.physicsBody.mass =(float)2 + arc4random_uniform(5 - 2 + 1);;
+    self.physicsBody.mass =(float)2 + arc4random_uniform(5 - 2 + 1);
     self.physicsBody.friction = 1.0;
-    self.physicsBody.affectedByGravity = false; 
+    self.physicsBody.affectedByGravity = NO;
     [self.physicsBody applyImpulse:vector];
 }
 
 //Animation loop to show like the bird is flying
 -(void)startAnimation {
-    SKTexture *startingText = [SKTexture textureWithImageNamed:kImageOne];
-    SKTexture *secondText = [SKTexture textureWithImageNamed:kImageTwo];
-    SKAction *runAction = [SKAction animateWithTextures:@[startingText, secondText] timePerFrame:0.4];
+    SKTexture *startingTexture = [SKTexture textureWithImageNamed:kImageOne];
+    SKTexture *secondTexture = [SKTexture textureWithImageNamed:kImageTwo];
+    SKAction *runAction = [SKAction animateWithTextures:@[startingTexture, secondTexture]
+                                           timePerFrame:0.4];
     [self runAction:[SKAction repeatActionForever:runAction]];
 }
 

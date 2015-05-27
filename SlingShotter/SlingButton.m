@@ -20,11 +20,12 @@ IB_DESIGNABLE
 }
 
 -(void)setup {
-    self.layer.borderWidth = 2.0;
-    self.layer.borderColor = [UIColor blackColor].CGColor;
-    [self setTintColor:[UIColor blackColor]];
-    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17.0];
-    self.backgroundColor = [UIColor whiteColor];
+    self.layer.borderWidth = 3.0;
+    self.layer.borderColor = [UIColor redColor].CGColor;
+    [self setTintColor:[UIColor redColor]];
+    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue"
+                                           size:25.0];
+    self.backgroundColor = [UIColor blackColor];
 }
 
 @end

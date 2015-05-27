@@ -18,6 +18,8 @@
 }
 
 static CGFloat const yBuffer = 10.0;
+static NSString *const kSlingStill = @"Sling";
+
 
 #pragma mark - Class Initializer
 +(instancetype)slingshotInRect:(CGRect)rect{
@@ -75,7 +77,7 @@ static CGFloat const yBuffer = 10.0;
     SKTexture *texture;
     if (point.x == middleOfSling.x &&
         point.y == middleOfSling.y) {
-        texture = [SKTexture textureWithImageNamed:@"Sling"];
+        texture = [SKTexture textureWithImageNamed:kSlingStill];
     }
     SKSpriteNode *sling = [[SKSpriteNode alloc] initWithTexture:texture
                                                           color:[UIColor new]

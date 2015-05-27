@@ -22,6 +22,8 @@
     SKShapeNode *line;
 }
 
+static NSString *const kBackgroundImage = @"Cornfield";
+
 #pragma mark - static variables
 static CGFloat const buffer = 50.0;
 static CGFloat const pullCheck = 10.0;
@@ -66,7 +68,7 @@ static CGFloat const pullCheck = 10.0;
 
 #pragma mark - Helper Methods
 -(void)addBackgroundImageForSize:(CGSize)size {
-    SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"Cornfield"];
+    SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:kBackgroundImage];
     backgroundNode.name = kBorderName;
     backgroundNode.position = CGPointMake(size.width/2, size.height/2);
     backgroundNode.size = size;

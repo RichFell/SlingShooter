@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -33,6 +34,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameOver1x" translatesAutoresizingMaskIntoConstraints="NO" id="9TD-al-UuG">
+                                <rect key="frame" x="-2" y="0.0" width="322" height="568"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DY-53-HNk">
                                 <rect key="frame" x="79" y="53" width="162" height="62"/>
                                 <constraints>
@@ -40,34 +44,40 @@
                                     <constraint firstAttribute="width" constant="162" id="wpe-pe-Jhl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="2" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-Me-AZa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-Me-AZa">
                                 <rect key="frame" x="114" y="146" width="93" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="CAN-oW-75v"/>
                                     <constraint firstAttribute="width" constant="93" id="JjR-5B-P6y"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="2" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAD-kN-Hcs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAD-kN-Hcs">
                                 <rect key="frame" x="83" y="210" width="155" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="IMm-Bf-9Mu"/>
                                     <constraint firstAttribute="width" constant="155" id="LcQ-aZ-hTh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="2" height="0.0"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-Rq-CUt" customClass="SlingButton">
-                                <rect key="frame" x="125" y="464" width="70" height="30"/>
+                                <rect key="frame" x="76" y="464" width="168" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="45Z-9j-ssh"/>
-                                    <constraint firstAttribute="height" constant="30" id="hP8-Aw-qk3"/>
+                                    <constraint firstAttribute="width" constant="168" id="45Z-9j-ssh"/>
+                                    <constraint firstAttribute="height" constant="51" id="hP8-Aw-qk3"/>
                                 </constraints>
                                 <state key="normal" title="Restart">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,9 +89,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="9TD-al-UuG" secondAttribute="trailing" constant="-16" id="00a-md-CW5"/>
+                            <constraint firstItem="9TD-al-UuG" firstAttribute="leading" secondItem="wuc-aN-dG2" secondAttribute="leadingMargin" constant="-18" id="1DY-Rp-5vw"/>
                             <constraint firstItem="Omu-Me-AZa" firstAttribute="top" secondItem="0DY-53-HNk" secondAttribute="bottom" constant="31" id="2ew-fP-Ank"/>
+                            <constraint firstItem="ulN-ai-DAB" firstAttribute="top" secondItem="9TD-al-UuG" secondAttribute="bottom" id="DD5-r8-v6x"/>
                             <constraint firstAttribute="centerX" secondItem="Omu-Me-AZa" secondAttribute="centerX" id="Jzz-au-ixZ"/>
-                            <constraint firstItem="ulN-ai-DAB" firstAttribute="top" secondItem="Hdh-Rq-CUt" secondAttribute="bottom" constant="74" id="RCj-fL-n5S"/>
+                            <constraint firstItem="9TD-al-UuG" firstAttribute="top" secondItem="wuc-aN-dG2" secondAttribute="topMargin" id="Q4o-9N-ZEZ"/>
+                            <constraint firstItem="ulN-ai-DAB" firstAttribute="top" secondItem="Hdh-Rq-CUt" secondAttribute="bottom" constant="53" id="RCj-fL-n5S"/>
                             <constraint firstAttribute="centerX" secondItem="0DY-53-HNk" secondAttribute="centerX" id="SKC-01-VI6"/>
                             <constraint firstAttribute="centerX" secondItem="zAD-kN-Hcs" secondAttribute="centerX" id="YBj-XN-wQf"/>
                             <constraint firstItem="0DY-53-HNk" firstAttribute="top" secondItem="5Bg-lK-Ygn" secondAttribute="bottom" constant="33" id="nkL-ie-VKa"/>
@@ -91,6 +105,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="gameOverLabel" destination="0DY-53-HNk" id="E6b-tb-Cdu"/>
                         <outlet property="highScoreLabel" destination="zAD-kN-Hcs" id="FmA-hC-Inw"/>
                         <outlet property="scoreLabel" destination="Omu-Me-AZa" id="NeW-1S-Al8"/>
                     </connections>
@@ -100,4 +115,7 @@
             <point key="canvasLocation" x="1073" y="244"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="GameOver1x" width="375" height="667"/>
+    </resources>
 </document>
