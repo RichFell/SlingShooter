@@ -3,7 +3,7 @@
 //  SlingShotter
 //
 
-//  Copyright (c) 2015 MobileMakers. All rights reserved.
+//  Copyright (c) 2015 RichFellure. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

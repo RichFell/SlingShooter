@@ -3,7 +3,7 @@
 //  SlingShotter
 //
 //  Created by Rich Fellure on 5/21/15.
-//  Copyright (c) 2015 MobileMakers. All rights reserved.
+//  Copyright (c) 2015 RichFellure. All rights reserved.
 //
 
 #import "SlingShot.h"
@@ -19,12 +19,13 @@
 
 static CGFloat const yBuffer = 10.0;
 static NSString *const kSlingStill = @"Sling";
+static NSString *const kSlingShotImage = @"Slingshot";
 
 
 #pragma mark - Class Initializer
 +(instancetype)slingshotInRect:(CGRect)rect{
 
-    SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: @"Slingshot"]];
+    SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: kSlingShotImage]];
     CGSize size = CGSizeMake(80.0, 140.0);
 
     SlingShot *slingshot = [[SlingShot alloc]initWithTexture:texture color:[UIColor new] size:size];
@@ -86,8 +87,6 @@ static NSString *const kSlingStill = @"Sling";
     sling.name = kSlingName;
     [self.scene addChild:sling];
 }
-
-//Pointer to non-const type 'NSString *' with no explicit ownership.
 
 -(void)checkForSling {
     SKNode *sling = [self.scene childNodeWithName:kSlingName];

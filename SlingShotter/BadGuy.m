@@ -3,7 +3,7 @@
 //  SlingShotter
 //
 //  Created by Rich Fellure on 5/21/15.
-//  Copyright (c) 2015 MobileMakers. All rights reserved.
+//  Copyright (c) 2015 RichFellure. All rights reserved.
 //
 
 #import "BadGuy.h"
@@ -25,7 +25,6 @@ static NSString *const kImageTwo = @"MyCrow2";
     badGuy.name = kBadGuyName;
     [badGuy startAnimation];
     [scene addChild:badGuy];
-
     badGuy.position = [badGuy randomPosition];
     [badGuy moveToKill];
 }

@@ -3,7 +3,7 @@
 //  SlingShotter
 //
 //  Created by Rich Fellure on 5/21/15.
-//  Copyright (c) 2015 MobileMakers. All rights reserved.
+//  Copyright (c) 2015 RichFellure. All rights reserved.
 //
 
 #import "Pebble.h"
@@ -15,12 +15,16 @@ static NSString *const kImageName = @"Pebble";
 
 +(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction{
     SKTexture *texture = [SKTexture textureWithImageNamed:kImageName];
-    CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30, CGRectGetWidth(scene.frame)/30);
-    Pebble *pebble = [[Pebble alloc]initWithTexture:texture color:[UIColor new] size:size];
+    CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30,
+                             CGRectGetWidth(scene.frame)/30);
+    Pebble *pebble = [[Pebble alloc]initWithTexture:texture
+                                              color:[UIColor new]
+                                               size:size];
     pebble.name = kPebbleName;
     pebble.position = direction;
     [scene addChild:pebble];
-    [pebble firePebbleFromPosition:position towardsPosition:direction];
+    [pebble firePebbleFromPosition:position
+                   towardsPosition:direction];
 }
 
 -(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition{
