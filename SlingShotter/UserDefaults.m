@@ -11,6 +11,7 @@
 @implementation UserDefaults
 
 static NSString *const kHighScoreKey = @"HighScore";
+static NSString *const kHasRunKey = @"HasRun";
 
 +(NSInteger)highScore {
     return [[[NSUserDefaults standardUserDefaults]objectForKey:kHighScoreKey]integerValue];
@@ -22,4 +23,13 @@ static NSString *const kHighScoreKey = @"HighScore";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(BOOL)hasRun {
+    return [[[NSUserDefaults standardUserDefaults]objectForKey:kHasRunKey] boolValue];
+}
+
++(void)setHasRun {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(YES) forKey:kHasRunKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end

@@ -11,4 +11,6 @@
 @interface UserDefaults : NSObject
 +(NSInteger)highScore;
 +(void)setHighScore:(NSInteger)highScore;
++(BOOL)hasRun;
++(void)setHasRun;
 @end

@@ -8,12 +8,22 @@
 
 #import "GameViewController.h"
 #import "GameOverViewController.h"
+#import "UserDefaults.h"
 
 @implementation GameViewController
 
 -(void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    [self showGameScene];
+    if (![UserDefaults hasRun]) {
+        IntroViewController *introVC = [IntroViewController storyboardInstance];
+        introVC.delegate = self;
+        [self presentViewController:introVC
+                           animated:true
+                         completion:nil];
+    }
+    else {
+        [self showGameScene];
+    }
 }
 
 #pragma mark - Present GameScene
@@ -38,7 +48,8 @@
 
 #pragma mark - Public Instance methods
 -(void)transitionToANewScene {
-    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionRight duration:0.2];
+    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionRight
+                                                        duration:0.2];
     transition.pausesIncomingScene = YES;
     transition.pausesOutgoingScene = YES;
     self.gameScene = nil;
@@ -47,7 +58,8 @@
     self.gameScene.scaleMode = SKSceneScaleModeFill;
     SKView *skView = (SKView *)self.view;
     skView.paused = NO;
-    [skView presentScene:self.gameScene transition:transition];
+    [skView presentScene:self.gameScene
+              transition:transition];
 }
 
 #pragma mark - GameSceneDelegate Method
@@ -56,7 +68,9 @@
         GameOverViewController *gameOVC = [GameOverViewController storyboardInstance];
         gameOVC.delegate = self;
         gameOVC.killCount = self.gameScene.killCount;
-        [self presentViewController:gameOVC animated:true completion:^{
+        [self presentViewController:gameOVC
+                           animated:true
+                         completion:^{
         }];
     }
 }
@@ -64,9 +78,18 @@
 #pragma mark - GameOverSceneDelegate Method
 -(void)gameOverVC:(GameOverViewController *)vc restartSelected:(BOOL)selection {
     if (selection) {
-        [vc dismissViewControllerAnimated:YES completion:^{
+        [vc dismissViewControllerAnimated:YES
+                               completion:^{
             [self transitionToANewScene];
         }];
+    }
+}
+
+#pragma mark - IntroVCDelegate Method
+-(void)introVC:(IntroViewController *)vc didSelectToPlayGame:(BOOL)shouldPlay {
+    if (shouldPlay) {
+        [UserDefaults setHasRun];
+        [self showGameScene];
     }
 }
 
