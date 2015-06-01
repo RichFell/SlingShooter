@@ -42,6 +42,7 @@ static NSString *const kSlingShotImage = @"Slingshot";
 
 #pragma mark - Instance Methods
 -(void)firePebbleFromPosition:(CGPoint)fromPosition {
+    waitingPebble = [Pebble placePebbleInScene:self.scene atPoint:fromPosition];
     [waitingPebble firePebbleFromPosition:fromPosition
                           towardsPosition:CGPointMake(CGRectGetMidX(self.frame),
                                                       CGRectGetMaxY(self.frame) - yBuffer)];
@@ -63,8 +64,6 @@ static NSString *const kSlingShotImage = @"Slingshot";
                               endPoint.x, endPoint.y);
     CGPathAddLineToPoint(path, NULL,
                          endPoint.x, endPoint.y);
-    [self movePebbleToPoint:controlPoint onPath:path];
-
     if (!line) {
         line = [SKShapeNode node];
         [self.scene addChild:line];
@@ -76,20 +75,6 @@ static NSString *const kSlingShotImage = @"Slingshot";
     SKAction *pull = [SKAction followPath:path speed:0.3];
     [SKAction runAction:pull onChildWithName:kLineName];
     CGPathRelease(path);
-}
-
--(void)movePebbleToPoint:(CGPoint)point onPath:(CGPathRef)path {
-
-    CGPoint middleOfSling = CGPointMake(CGRectGetMidX(self.frame),
-                                        CGRectGetMaxY(self.frame) - yBuffer);
-    if (point.x == middleOfSling.x &&
-        point.y == middleOfSling.y) {
-        waitingPebble = [Pebble placePebbleInScene:self.scene
-                                           atPoint:point];
-    }
-    else {
-        waitingPebble.position = point;
-    }
 }
 
 @end
