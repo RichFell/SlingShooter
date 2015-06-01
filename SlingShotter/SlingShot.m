@@ -15,31 +15,36 @@
     SKShapeNode *line;
     CGPoint startPoint;
     CGPoint endPoint;
+    Pebble *waitingPebble;
 }
 
 static CGFloat const yBuffer = 10.0;
-static NSString *const kSlingStill = @"Sling";
 static NSString *const kSlingShotImage = @"Slingshot";
 
 
 #pragma mark - Class Initializer
-+(instancetype)slingshotInRect:(CGRect)rect{
++(instancetype)slingshotInScene:(SKScene *)scene{
 
     SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: kSlingShotImage]];
     CGSize size = CGSizeMake(80.0, 140.0);
 
-    SlingShot *slingshot = [[SlingShot alloc]initWithTexture:texture color:[UIColor new] size:size];
-    slingshot.position = CGPointMake(CGRectGetWidth(rect)/2, CGRectGetHeight(rect)/6);
+    SlingShot *slingshot = [[SlingShot alloc]initWithTexture:texture
+                                                       color:[UIColor new]
+                                                        size:size];
+    
+    slingshot.position = CGPointMake(CGRectGetWidth(scene.frame)/2,
+                                     CGRectGetHeight(scene.frame)/6);
+    [scene addChild:slingshot];
+    [slingshot drawStringToPoint:CGPointMake(CGRectGetMidX(slingshot.frame),
+                                             CGRectGetMaxY(slingshot.frame) - yBuffer)];
     return slingshot;
 }
 
 #pragma mark - Instance Methods
 -(void)firePebbleFromPosition:(CGPoint)fromPosition {
-    [Pebble pebbleInScene:self.scene
-                              fromPosition:CGPointMake(CGRectGetMidX(self.frame),
-                                                       CGRectGetMaxY(self.frame) - yBuffer)
-                                 withForce:1.0
-                               inDirection:fromPosition];
+    [waitingPebble firePebbleFromPosition:fromPosition
+                          towardsPosition:CGPointMake(CGRectGetMidX(self.frame),
+                                                      CGRectGetMaxY(self.frame) - yBuffer)];
     [self drawStringToPoint:CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMaxY(self.frame) - yBuffer)];
     
@@ -60,38 +65,28 @@ static NSString *const kSlingShotImage = @"Slingshot";
     CGPathAddQuadCurveToPoint(path, nil,
                               controlPoint.x, controlPoint.y,
                               endPoint.x, endPoint.y);
-    CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
+//    CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
     line.path = path;
     line.name = kLineName;
     line.strokeColor = [UIColor whiteColor];
     line.lineWidth = 5.0;
-    SKAction *pull = [SKAction followPath:path speed:0.4];
+    SKAction *pull = [SKAction followPath:path speed:0.0];
     [SKAction runAction:pull onChildWithName:kLineName];
-    [self addSlingForPoint:controlPoint];
     CGPathRelease(path);
+
+    [self movePebbleToPoint:CGPointMake(CGRectGetMidX(line.frame), CGRectGetMidY(line.frame))];
 }
 
--(void)addSlingForPoint:(CGPoint)point {
-    [self checkForSling];
+-(void)movePebbleToPoint:(CGPoint)point {
+
     CGPoint middleOfSling = CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMaxY(self.frame) - yBuffer);
-    SKTexture *texture;
     if (point.x == middleOfSling.x &&
         point.y == middleOfSling.y) {
-        texture = [SKTexture textureWithImageNamed:kSlingStill];
+        waitingPebble = [Pebble placePebbleInScene:self.scene atPoint:point];
     }
-    SKSpriteNode *sling = [[SKSpriteNode alloc] initWithTexture:texture
-                                                          color:[UIColor new]
-                                                           size:CGSizeMake(50.0, 42.0)];
-    sling.position = point;
-    sling.name = kSlingName;
-    [self.scene addChild:sling];
-}
-
--(void)checkForSling {
-    SKNode *sling = [self.scene childNodeWithName:kSlingName];
-    if (sling) {
-        [self.scene removeChildrenInArray:@[sling]];
+    else {
+        waitingPebble.position = point;
     }
 }
 

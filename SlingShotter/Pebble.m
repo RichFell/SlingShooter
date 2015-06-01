@@ -12,24 +12,21 @@
 @implementation Pebble
 
 static NSString *const kImageName = @"Pebble";
+static CGFloat const kSize = 20.0;
 
-+(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction{
++(instancetype)placePebbleInScene:(SKScene *)scene atPoint:(CGPoint)point{
     SKTexture *texture = [SKTexture textureWithImageNamed:kImageName];
-    CGSize size = CGSizeMake(CGRectGetWidth(scene.frame)/30,
-                             CGRectGetWidth(scene.frame)/30);
+    CGSize size = CGSizeMake(kSize, kSize);
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture
                                               color:[UIColor new]
                                                size:size];
-    pebble.name = kPebbleName;
-    pebble.position = direction;
     [scene addChild:pebble];
-    [pebble firePebbleFromPosition:position
-                   towardsPosition:direction];
+    return pebble;
 }
 
 -(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition{
-    CGVector vector = CGVectorMake(startingPosition.x - endingPosition.x,
-                                   startingPosition.y - endingPosition.y);
+    CGVector vector = CGVectorMake(endingPosition.x - startingPosition.x,
+                                   endingPosition.y - startingPosition.y);
 
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size
                                                        center:self.inputView.center];

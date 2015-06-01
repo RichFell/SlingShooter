@@ -13,7 +13,7 @@
 /**
  Description: Instantiate a new SlingShot in the desired CGRect
  */
-+(instancetype)slingshotInRect:(CGRect)rect;
++(instancetype)slingshotInScene:(SKScene *)scene;
 
 /**
  Description: Tells the SlingShot that it needs to fire a Pebble from the position given. 

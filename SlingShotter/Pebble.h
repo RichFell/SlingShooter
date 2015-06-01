@@ -12,5 +12,8 @@
 
 @interface Pebble : SKSpriteNode
 
-+(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction;
++(instancetype)placePebbleInScene:(SKScene *)scene atPoint:(CGPoint)point;
+-(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition;
+
+//+(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction;
 @end

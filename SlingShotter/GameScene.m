@@ -34,10 +34,7 @@ static CGFloat const pullCheck = 10.0;
         [self addBackgroundImageForSize:size];
         self.scoreNode = [ScoreNode addScoreBoardToScene:self];
         [self setupScenePhysicsBody];
-        self.slingshot = [SlingShot slingshotInRect:self.frame];
-        [self addChild:self.slingshot];
-        [self.slingshot drawStringToPoint:CGPointMake(CGRectGetMidX(self.slingshot.frame),
-                                                      CGRectGetMaxY(self.slingshot.frame) - 10.0)];
+        self.slingshot = [SlingShot slingshotInScene:self];
         [BadGuy dropABadGuyOnScene:self];
         spawnCount = 0;
         self.killCount = 0;
