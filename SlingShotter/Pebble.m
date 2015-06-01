@@ -20,6 +20,7 @@ static CGFloat const kSize = 20.0;
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture
                                               color:[UIColor new]
                                                size:size];
+    pebble.position = point;
     [scene addChild:pebble];
     return pebble;
 }

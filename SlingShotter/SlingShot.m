@@ -51,39 +51,41 @@ static NSString *const kSlingShotImage = @"Slingshot";
 }
 
 -(void)drawStringToPoint:(CGPoint)controlPoint {
-    if (!line) {
-        line = [SKShapeNode node];
-        [self.scene addChild:line];
-    }
-
     CGMutablePathRef path = CGPathCreateMutable();
     startPoint = CGPointMake(CGRectGetMidX(self.frame) - CGRectGetWidth(self.frame)/3,
                              CGRectGetMaxY(self.frame) - yBuffer);
     endPoint = CGPointMake(CGRectGetMidX(self.frame) + CGRectGetWidth(self.frame)/3,
                            CGRectGetMaxY(self.frame) - yBuffer);
     CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
+
     CGPathAddQuadCurveToPoint(path, nil,
                               controlPoint.x, controlPoint.y,
                               endPoint.x, endPoint.y);
-//    CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
+    CGPathAddLineToPoint(path, NULL,
+                         endPoint.x, endPoint.y);
+    [self movePebbleToPoint:controlPoint onPath:path];
+
+    if (!line) {
+        line = [SKShapeNode node];
+        [self.scene addChild:line];
+    }
     line.path = path;
     line.name = kLineName;
     line.strokeColor = [UIColor whiteColor];
     line.lineWidth = 5.0;
-    SKAction *pull = [SKAction followPath:path speed:0.0];
+    SKAction *pull = [SKAction followPath:path speed:0.3];
     [SKAction runAction:pull onChildWithName:kLineName];
     CGPathRelease(path);
-
-    [self movePebbleToPoint:CGPointMake(CGRectGetMidX(line.frame), CGRectGetMidY(line.frame))];
 }
 
--(void)movePebbleToPoint:(CGPoint)point {
+-(void)movePebbleToPoint:(CGPoint)point onPath:(CGPathRef)path {
 
     CGPoint middleOfSling = CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMaxY(self.frame) - yBuffer);
     if (point.x == middleOfSling.x &&
         point.y == middleOfSling.y) {
-        waitingPebble = [Pebble placePebbleInScene:self.scene atPoint:point];
+        waitingPebble = [Pebble placePebbleInScene:self.scene
+                                           atPoint:point];
     }
     else {
         waitingPebble.position = point;
