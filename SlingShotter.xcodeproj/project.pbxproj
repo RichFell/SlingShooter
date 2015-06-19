@@ -25,6 +25,8 @@
 		9BCDF7CF1B11186800C71D8F /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7CE1B11186800C71D8F /* UserDefaults.m */; };
 		9BCDF7D31B1255C900C71D8F /* SlingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7D21B1255C900C71D8F /* SlingButton.m */; };
 		9BDA30071B17886C0039C8E7 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA30061B17886C0039C8E7 /* IntroViewController.m */; };
+		9BF39F761B3488B800E26DCA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF39F751B3488B800E26DCA /* GameKit.framework */; };
+		9BF39F7A1B3496FE00E26DCA /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF39F791B3496FE00E26DCA /* GameCenterManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,9 @@
 		9BCDF7D21B1255C900C71D8F /* SlingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlingButton.m; sourceTree = "<group>"; };
 		9BDA30051B17886C0039C8E7 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		9BDA30061B17886C0039C8E7 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		9BF39F751B3488B800E26DCA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		9BF39F781B3496FE00E26DCA /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		9BF39F791B3496FE00E26DCA /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF39F761B3488B800E26DCA /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +102,8 @@
 		9BCDF77A1B0E691500C71D8F = {
 			isa = PBXGroup;
 			children = (
+				9BF39F771B3496CB00E26DCA /* GameCenterManager */,
+				9BF39F751B3488B800E26DCA /* GameKit.framework */,
 				9BCDF7851B0E691500C71D8F /* SlingShotter */,
 				9BCDF7A41B0E691500C71D8F /* SlingShotterTests */,
 				9BCDF7841B0E691500C71D8F /* Products */,
@@ -238,6 +246,15 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		9BF39F771B3496CB00E26DCA /* GameCenterManager */ = {
+			isa = PBXGroup;
+			children = (
+				9BF39F781B3496FE00E26DCA /* GameCenterManager.h */,
+				9BF39F791B3496FE00E26DCA /* GameCenterManager.m */,
+			);
+			name = GameCenterManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,6 +305,11 @@
 					9BCDF7821B0E691500C71D8F = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = S38456XTSR;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					9BCDF7A01B0E691500C71D8F = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -351,6 +373,7 @@
 				9BCDF7C01B0EC6D900C71D8F /* Constants.m in Sources */,
 				9BCDF7C81B0FF27600C71D8F /* ScoreNode.m in Sources */,
 				9BCDF78F1B0E691500C71D8F /* GameScene.m in Sources */,
+				9BF39F7A1B3496FE00E26DCA /* GameCenterManager.m in Sources */,
 				9BCDF7891B0E691500C71D8F /* main.m in Sources */,
 				9BCDF7B91B0E7D9900C71D8F /* SlingShot.m in Sources */,
 				9BDA30071B17886C0039C8E7 /* IntroViewController.m in Sources */,

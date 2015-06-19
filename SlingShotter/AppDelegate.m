@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GameCenterManager.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[GameCenterManager sharedManager]checkForAuthenticationInBackground:^(UIViewController *vc, NSError *error) {
+        if (vc) {
+            
+        }
+    }];
     return YES;
 }
 

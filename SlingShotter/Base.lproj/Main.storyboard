@@ -48,7 +48,7 @@ This is Billy's first season running his own farm, and all he has to protect all
 
 Fight the crows, protect the farm, so Billy will be able to feed his family.</mutableString>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USx-nk-Jze" customClass="SlingButton">
@@ -83,7 +83,7 @@ Fight the crows, protect the farm, so Billy will be able to feed his family.</mu
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZl-qf-hEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365" y="974"/>
+            <point key="canvasLocation" x="384" y="1108"/>
         </scene>
         <!--Game Over View Controller-->
         <scene sceneID="IFb-eK-ox7">
