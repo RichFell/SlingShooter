@@ -8,6 +8,7 @@
 
 #import "GameOverViewController.h"
 #import "UserDefaults.h"
+#import "GameCenterManager.h"
 
 @interface GameOverViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -19,11 +20,6 @@
 @implementation GameOverViewController
 
 static NSString *const kBackgroundImage = @"GameOver";
-
-+(instancetype)storyboardInstance {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    return [storyboard instantiateViewControllerWithIdentifier:@"GameOverViewController"];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +45,11 @@ static NSString *const kBackgroundImage = @"GameOver";
 #pragma mark - Helper Methods
 -(void)checkHighScore {
     if (self.killCount > [UserDefaults highScore] || ![UserDefaults highScore]) {
+        [[GameCenterManager sharedManager] reportScore:self.killCount block:^(NSError *error) {
+            if (error) {
+                NSLog(@"%@",error.localizedDescription);
+            }
+        }];
         [UserDefaults setHighScore:self.killCount];
     }
 }

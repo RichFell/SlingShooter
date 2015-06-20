@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "GameCenterManager.h"
 
 @interface AppDelegate ()
 
@@ -17,11 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[GameCenterManager sharedManager]checkForAuthenticationInBackground:^(UIViewController *vc, NSError *error) {
-        if (vc) {
-            
-        }
-    }];
     return YES;
 }
 

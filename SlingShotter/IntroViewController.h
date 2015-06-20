@@ -7,18 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class IntroViewController;
-
-@protocol IntroVCDelegate <NSObject>
-
--(void)introVC:(IntroViewController *)vc didSelectToPlayGame:(BOOL)shouldPlay;
-
-@end
 
 @interface IntroViewController : UIViewController
-
-@property id<IntroVCDelegate>delegate;
-
-+(instancetype)storyboardInstance;
 
 @end

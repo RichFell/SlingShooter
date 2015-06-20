@@ -20,26 +20,43 @@
 }
 
 -(void)checkForAuthenticationInBackground:(void(^)(UIViewController *vc, NSError *error))complete {
-    GKLocalPlayer *player = [GKLocalPlayer localPlayer];
-    [player setAuthenticateHandler:^(UIViewController *vc, NSError *error) {
+    self.player = [GKLocalPlayer localPlayer];
+    [self.player setAuthenticateHandler:^(UIViewController *vc, NSError *error) {
         if (vc) {
             complete(vc, error);
         }else {
             if ([GKLocalPlayer localPlayer].authenticated) {
-
-
                 [[GKLocalPlayer localPlayer]loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
                     if (error) {
                         NSLog(@"%@", error.localizedDescription);
                     }else {
-                        self.leaderboardIdentifier = leaderboardIdentifier;
+                        _leaderboardIdentifier = leaderboardIdentifier;
                     }
                 }];
             }
-            self.gameCenterEnabled = [GKLocalPlayer localPlayer].authenticated;
+            _gameCenterEnabled = [GKLocalPlayer localPlayer].authenticated;
         }
-
     }];
+}
+
+-(void)reportScore:(NSInteger)score block:(void(^)(NSError *error))complete {
+    GKScore *s = [[GKScore alloc] initWithLeaderboardIdentifier:self.leaderboardIdentifier];
+    s.value = score;
+    [GKScore reportScores:@[s] withCompletionHandler:^(NSError *error) {
+        complete(error);
+    }];
+}
+
+- (void) retrieveTopTenScoresInBackground:(void(^)(NSArray *scores, NSError *error))completed {
+    GKLeaderboard *leaderboardRequest = [[GKLeaderboard alloc] init];
+    if (leaderboardRequest != nil) {
+        leaderboardRequest.playerScope = GKLeaderboardPlayerScopeGlobal;
+        leaderboardRequest.identifier = self.leaderboardIdentifier;
+        leaderboardRequest.range = NSMakeRange(1,10);
+        [leaderboardRequest loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+            completed(scores, error);
+        }];
+    }
 }
 
 @end

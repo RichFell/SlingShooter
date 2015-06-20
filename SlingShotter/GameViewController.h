@@ -10,9 +10,8 @@
 #import <SpriteKit/SpriteKit.h>
 #import "GameScene.h"
 #import "GameOverViewController.h"
-#import "IntroViewController.h"
 
-@interface GameViewController : UIViewController<GameSceneDelegate, GameOverVCDelegate, IntroVCDelegate>
+@interface GameViewController : UIViewController<GameSceneDelegate, GameOverVCDelegate>
 
 @property GameScene *gameScene;
 @end

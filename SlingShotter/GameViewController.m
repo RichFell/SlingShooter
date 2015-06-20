@@ -12,17 +12,20 @@
 
 @implementation GameViewController
 
+static NSString *const GameOverSegue = @"GameOverSegue";
+
+
+#pragma mark - View LifeCycle
 -(void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    if (![UserDefaults hasRun]) {
-        IntroViewController *introVC = [IntroViewController storyboardInstance];
-        introVC.delegate = self;
-        [self presentViewController:introVC
-                           animated:true
-                         completion:nil];
-    }
-    else {
-        [self showGameScene];
+    [self showGameScene];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.destinationViewController isKindOfClass:[GameOverViewController class]]) {
+        GameOverViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
+        vc.killCount = self.gameScene.killCount;
     }
 }
 
@@ -32,9 +35,9 @@
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
-//        skView.showsFPS = YES;C
-//        skView.showsNodeCount = YES;
-//        skView.showsPhysics = NO;
+        skView.showsFPS = YES;
+        skView.showsNodeCount = YES;
+        skView.showsPhysics = NO;
 
         // Create and configure the scene.
         self.gameScene = [GameScene sceneWithSize:skView.bounds.size];
@@ -65,13 +68,7 @@
 #pragma mark - GameSceneDelegate Method
 -(void)gameScene:(GameScene *)gameScene shouldEndGame:(BOOL)shouldEnd {
     if (shouldEnd) {
-        GameOverViewController *gameOVC = [GameOverViewController storyboardInstance];
-        gameOVC.delegate = self;
-        gameOVC.killCount = self.gameScene.killCount;
-        [self presentViewController:gameOVC
-                           animated:true
-                         completion:^{
-        }];
+        [self performSegueWithIdentifier:GameOverSegue sender:nil];
     }
 }
 
@@ -82,14 +79,6 @@
                                completion:^{
             [self transitionToANewScene];
         }];
-    }
-}
-
-#pragma mark - IntroVCDelegate Method
--(void)introVC:(IntroViewController *)vc didSelectToPlayGame:(BOOL)shouldPlay {
-    if (shouldPlay) {
-        [UserDefaults setHasRun];
-        [self showGameScene];
     }
 }
 

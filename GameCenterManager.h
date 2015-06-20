@@ -14,9 +14,11 @@
 @property BOOL isAuthenticated;
 @property BOOL gameCenterEnabled;
 @property NSString * leaderboardIdentifier;
+@property GKLocalPlayer *player;
 
 +(instancetype)sharedManager;
 -(void)checkForAuthenticationInBackground:(void(^)(UIViewController *vc, NSError *error))complete;
-
+-(void)reportScore:(NSInteger)score block:(void(^)(NSError *error))complete;
+-(void)retrieveTopTenScoresInBackground:(void(^)(NSArray *scores, NSError *error))completed;
 
 @end

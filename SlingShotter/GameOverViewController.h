@@ -18,6 +18,6 @@
 @interface GameOverViewController : UIViewController
 
 @property id<GameOverVCDelegate>delegate;
-+(instancetype)storyboardInstance;
+
 @property NSInteger killCount;
 @end

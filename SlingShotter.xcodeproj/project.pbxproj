@@ -27,6 +27,8 @@
 		9BDA30071B17886C0039C8E7 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA30061B17886C0039C8E7 /* IntroViewController.m */; };
 		9BF39F761B3488B800E26DCA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF39F751B3488B800E26DCA /* GameKit.framework */; };
 		9BF39F7A1B3496FE00E26DCA /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF39F791B3496FE00E26DCA /* GameCenterManager.m */; };
+		9BF39F7E1B350D9700E26DCA /* LeaderBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF39F7D1B350D9700E26DCA /* LeaderBoardViewController.m */; };
+		9BF39F851B352B1900E26DCA /* LeaderBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF39F841B352B1900E26DCA /* LeaderBoardTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		9BF39F751B3488B800E26DCA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		9BF39F781B3496FE00E26DCA /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
 		9BF39F791B3496FE00E26DCA /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
+		9BF39F7C1B350D9700E26DCA /* LeaderBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoardViewController.h; sourceTree = "<group>"; };
+		9BF39F7D1B350D9700E26DCA /* LeaderBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderBoardViewController.m; sourceTree = "<group>"; };
+		9BF39F831B352B1900E26DCA /* LeaderBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoardTableViewCell.h; sourceTree = "<group>"; };
+		9BF39F841B352B1900E26DCA /* LeaderBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderBoardTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +108,6 @@
 		9BCDF77A1B0E691500C71D8F = {
 			isa = PBXGroup;
 			children = (
-				9BF39F771B3496CB00E26DCA /* GameCenterManager */,
-				9BF39F751B3488B800E26DCA /* GameKit.framework */,
 				9BCDF7851B0E691500C71D8F /* SlingShotter */,
 				9BCDF7A41B0E691500C71D8F /* SlingShotterTests */,
 				9BCDF7841B0E691500C71D8F /* Products */,
@@ -122,18 +126,15 @@
 		9BCDF7851B0E691500C71D8F /* SlingShotter */ = {
 			isa = PBXGroup;
 			children = (
+				9BF39F771B3496CB00E26DCA /* GameCenterManager */,
 				9BCDF7D01B1255AF00C71D8F /* Buttons */,
 				9BCDF7CC1B11184500C71D8F /* Utilities */,
 				9BCDF7C51B0FF25300C71D8F /* Labels and such */,
 				9BCDF7BD1B0EC6BE00C71D8F /* CollisionManager */,
-				9BCDF7B61B0E7D3A00C71D8F /* ViewController */,
+				9BCDF7B61B0E7D3A00C71D8F /* ViewControllers */,
 				9BCDF7B51B0E7D2800C71D8F /* Scenes */,
 				9BCDF7B41B0E7D1200C71D8F /* Characters */,
-				9BCDF78A1B0E691500C71D8F /* AppDelegate.h */,
-				9BCDF78B1B0E691500C71D8F /* AppDelegate.m */,
-				9BCDF7951B0E691500C71D8F /* Main.storyboard */,
-				9BCDF7981B0E691500C71D8F /* Images.xcassets */,
-				9BCDF79A1B0E691500C71D8F /* LaunchScreen.xib */,
+				9BF39F7B1B34BD3200E26DCA /* Resources */,
 				9BCDF7861B0E691500C71D8F /* Supporting Files */,
 			);
 			path = SlingShotter;
@@ -187,17 +188,15 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
-		9BCDF7B61B0E7D3A00C71D8F /* ViewController */ = {
+		9BCDF7B61B0E7D3A00C71D8F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9BCDF7921B0E691500C71D8F /* GameViewController.h */,
-				9BCDF7931B0E691500C71D8F /* GameViewController.m */,
-				9BCDF7C91B10ED4100C71D8F /* GameOverViewController.h */,
-				9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */,
-				9BDA30051B17886C0039C8E7 /* IntroViewController.h */,
-				9BDA30061B17886C0039C8E7 /* IntroViewController.m */,
+				9BF39F811B3519DE00E26DCA /* IntroVC */,
+				9BF39F821B3519F400E26DCA /* LeaderBoard */,
+				9BF39F7F1B3519BF00E26DCA /* GameViewController */,
+				9BF39F801B3519CF00E26DCA /* GameOverVC */,
 			);
-			name = ViewController;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9BCDF7BD1B0EC6BE00C71D8F /* CollisionManager */ = {
@@ -249,10 +248,78 @@
 		9BF39F771B3496CB00E26DCA /* GameCenterManager */ = {
 			isa = PBXGroup;
 			children = (
+				9BF39F751B3488B800E26DCA /* GameKit.framework */,
 				9BF39F781B3496FE00E26DCA /* GameCenterManager.h */,
 				9BF39F791B3496FE00E26DCA /* GameCenterManager.m */,
 			);
 			name = GameCenterManager;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9BF39F7B1B34BD3200E26DCA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF78A1B0E691500C71D8F /* AppDelegate.h */,
+				9BCDF78B1B0E691500C71D8F /* AppDelegate.m */,
+				9BCDF7951B0E691500C71D8F /* Main.storyboard */,
+				9BCDF7981B0E691500C71D8F /* Images.xcassets */,
+				9BCDF79A1B0E691500C71D8F /* LaunchScreen.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9BF39F7F1B3519BF00E26DCA /* GameViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7921B0E691500C71D8F /* GameViewController.h */,
+				9BCDF7931B0E691500C71D8F /* GameViewController.m */,
+			);
+			name = GameViewController;
+			sourceTree = "<group>";
+		};
+		9BF39F801B3519CF00E26DCA /* GameOverVC */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7C91B10ED4100C71D8F /* GameOverViewController.h */,
+				9BCDF7CA1B10ED4100C71D8F /* GameOverViewController.m */,
+			);
+			name = GameOverVC;
+			sourceTree = "<group>";
+		};
+		9BF39F811B3519DE00E26DCA /* IntroVC */ = {
+			isa = PBXGroup;
+			children = (
+				9BDA30051B17886C0039C8E7 /* IntroViewController.h */,
+				9BDA30061B17886C0039C8E7 /* IntroViewController.m */,
+			);
+			name = IntroVC;
+			sourceTree = "<group>";
+		};
+		9BF39F821B3519F400E26DCA /* LeaderBoard */ = {
+			isa = PBXGroup;
+			children = (
+				9BF39F861B352C2300E26DCA /* LeaderBoardVC */,
+				9BF39F871B352C3300E26DCA /* LeaderBoardCell */,
+			);
+			name = LeaderBoard;
+			sourceTree = "<group>";
+		};
+		9BF39F861B352C2300E26DCA /* LeaderBoardVC */ = {
+			isa = PBXGroup;
+			children = (
+				9BF39F7C1B350D9700E26DCA /* LeaderBoardViewController.h */,
+				9BF39F7D1B350D9700E26DCA /* LeaderBoardViewController.m */,
+			);
+			name = LeaderBoardVC;
+			sourceTree = "<group>";
+		};
+		9BF39F871B352C3300E26DCA /* LeaderBoardCell */ = {
+			isa = PBXGroup;
+			children = (
+				9BF39F831B352B1900E26DCA /* LeaderBoardTableViewCell.h */,
+				9BF39F841B352B1900E26DCA /* LeaderBoardTableViewCell.m */,
+			);
+			name = LeaderBoardCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +432,7 @@
 				9BCDF7CB1B10ED4100C71D8F /* GameOverViewController.m in Sources */,
 				9BCDF7941B0E691500C71D8F /* GameViewController.m in Sources */,
 				9BCDF7B31B0E7D0400C71D8F /* BadGuy.m in Sources */,
+				9BF39F851B352B1900E26DCA /* LeaderBoardTableViewCell.m in Sources */,
 				9BCDF7BC1B0E8A8100C71D8F /* Pebble.m in Sources */,
 				9BCDF7CF1B11186800C71D8F /* UserDefaults.m in Sources */,
 				9BCDF7D31B1255C900C71D8F /* SlingButton.m in Sources */,
@@ -372,6 +440,7 @@
 				9BCDF78C1B0E691500C71D8F /* AppDelegate.m in Sources */,
 				9BCDF7C01B0EC6D900C71D8F /* Constants.m in Sources */,
 				9BCDF7C81B0FF27600C71D8F /* ScoreNode.m in Sources */,
+				9BF39F7E1B350D9700E26DCA /* LeaderBoardViewController.m in Sources */,
 				9BCDF78F1B0E691500C71D8F /* GameScene.m in Sources */,
 				9BF39F7A1B3496FE00E26DCA /* GameCenterManager.m in Sources */,
 				9BCDF7891B0E691500C71D8F /* main.m in Sources */,

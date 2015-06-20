@@ -7,6 +7,7 @@
 //
 
 #import "IntroViewController.h"
+#import "GameCenterManager.h"
 
 @interface IntroViewController ()
 
@@ -16,18 +17,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [[GameCenterManager sharedManager]checkForAuthenticationInBackground:^(UIViewController *vc, NSError *error) {
+        if (vc) {
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+        if (error) {
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
 
-+(instancetype)storyboardInstance {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"
-                                                         bundle:nil];
-    return [storyboard instantiateViewControllerWithIdentifier:@"IntroViewController"];
-}
-
-- (IBAction)playGameOnTap:(UIButton *)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-    [self.delegate introVC:self didSelectToPlayGame:true];
-}
 
 @end
