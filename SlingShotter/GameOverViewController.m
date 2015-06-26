@@ -27,7 +27,7 @@ static NSString *const kBackgroundImage = @"GameOver";
     self.highScoreLabel.alpha = 0.0;
     self.scoreLabel.alpha = 0.0;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.killCount];
-    [self checkHighScore];
+    [UserDefaults checkHighScoreAgainst:self.killCount];
     self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %ld", [UserDefaults highScore]];
 }
 
@@ -40,18 +40,6 @@ static NSString *const kBackgroundImage = @"GameOver";
 - (IBAction)restartOnTap:(UIButton *)sender {
     [self.delegate gameOverVC:self
               restartSelected:YES];
-}
-
-#pragma mark - Helper Methods
--(void)checkHighScore {
-    if (self.killCount > [UserDefaults highScore] || ![UserDefaults highScore]) {
-        [[GameCenterManager sharedManager] reportScore:self.killCount block:^(NSError *error) {
-            if (error) {
-                NSLog(@"%@",error.localizedDescription);
-            }
-        }];
-        [UserDefaults setHighScore:self.killCount];
-    }
 }
 
 -(void)animateLabels {

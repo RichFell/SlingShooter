@@ -11,6 +11,9 @@
 #import "UserDefaults.h"
 
 @implementation GameViewController
+{
+    NSDate *startDate;
+}
 
 static NSString *const GameOverSegue = @"GameOverSegue";
 
@@ -44,6 +47,7 @@ static NSString *const GameOverSegue = @"GameOverSegue";
         self.gameScene.scaleMode = SKSceneScaleModeAspectFill;
         self.gameScene.gameSceneDelegate = self;
 
+        startDate = [NSDate date];
         // Present the scene.
         [skView presentScene:self.gameScene];
     }
@@ -61,6 +65,7 @@ static NSString *const GameOverSegue = @"GameOverSegue";
     self.gameScene.scaleMode = SKSceneScaleModeFill;
     SKView *skView = (SKView *)self.view;
     skView.paused = NO;
+    startDate = [NSDate date];
     [skView presentScene:self.gameScene
               transition:transition];
 }

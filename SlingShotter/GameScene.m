@@ -12,6 +12,7 @@
 #import "CollisionManager.h"
 #import "Constants.h"
 #import "ScoreNode.h"
+#import "UserDefaults.h"
 
 @implementation GameScene
 {
@@ -20,6 +21,7 @@
     BOOL isShooting;
     NSInteger spawnCount;
     SKShapeNode *line;
+    NSDate *startDate;
 }
 
 static NSString *const kBackgroundImage = @"Cornfield";
@@ -39,6 +41,7 @@ static CGFloat const pullCheck = 10.0;
         spawnCount = 0;
         self.killCount = 0;
         [self addBadGuysLoop];
+        startDate = [NSDate date];
     }
     return self;
 }
@@ -76,7 +79,8 @@ static CGFloat const pullCheck = 10.0;
 
     //Add the physics body to the scene, so that there will be a boundary around the scene we can use to delete nodes, and things once they collide.
     self.scaleMode = SKSceneScaleModeFill;
-    CGRect newFrame = CGRectMake(-buffer, -buffer, CGRectGetWidth(self.frame) + (buffer * 2), CGRectGetHeight(self.frame) + (buffer * 2));
+    CGRect newFrame = CGRectMake(-buffer, -buffer, CGRectGetWidth(self.frame) + (buffer * 2),
+                                 CGRectGetHeight(self.frame) + (buffer * 2));
     SKPhysicsBody *border = [SKPhysicsBody bodyWithEdgeLoopFromRect:newFrame];
     self.physicsBody = border;
     self.physicsBody.contactTestBitMask = kPebbleCategory | kBadGuyCategory;
@@ -125,6 +129,7 @@ static CGFloat const pullCheck = 10.0;
 #pragma mark - CollisionManagerDelegate methods
 -(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
     self.scene.view.paused = YES;
+    [UserDefaults checkTimeSurvived:startDate];
     [self.gameSceneDelegate gameScene:self shouldEndGame:YES];
 }
 

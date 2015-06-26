@@ -105,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B5128581B3DB13C008E5BB6 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7CD1B11186800C71D8F /* UserDefaults.h */,
+				9BCDF7CE1B11186800C71D8F /* UserDefaults.m */,
+			);
+			name = UserDefaults;
+			sourceTree = "<group>";
+		};
 		9BCDF77A1B0E691500C71D8F = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +138,7 @@
 				9BF39F771B3496CB00E26DCA /* GameCenterManager */,
 				9BCDF7D01B1255AF00C71D8F /* Buttons */,
 				9BCDF7CC1B11184500C71D8F /* Utilities */,
-				9BCDF7C51B0FF25300C71D8F /* Labels and such */,
+				9BCDF7C51B0FF25300C71D8F /* ScoreLabel */,
 				9BCDF7BD1B0EC6BE00C71D8F /* CollisionManager */,
 				9BCDF7B61B0E7D3A00C71D8F /* ViewControllers */,
 				9BCDF7B51B0E7D2800C71D8F /* Scenes */,
@@ -217,21 +226,20 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		9BCDF7C51B0FF25300C71D8F /* Labels and such */ = {
+		9BCDF7C51B0FF25300C71D8F /* ScoreLabel */ = {
 			isa = PBXGroup;
 			children = (
 				9BCDF7C61B0FF27600C71D8F /* ScoreNode.h */,
 				9BCDF7C71B0FF27600C71D8F /* ScoreNode.m */,
 			);
-			name = "Labels and such";
+			name = ScoreLabel;
 			sourceTree = "<group>";
 		};
 		9BCDF7CC1B11184500C71D8F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				9B5128581B3DB13C008E5BB6 /* UserDefaults */,
 				9BCDF7C11B0EDC9F00C71D8F /* Constants */,
-				9BCDF7CD1B11186800C71D8F /* UserDefaults.h */,
-				9BCDF7CE1B11186800C71D8F /* UserDefaults.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";

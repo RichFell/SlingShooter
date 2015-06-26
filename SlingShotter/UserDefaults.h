@@ -10,7 +10,10 @@
 
 @interface UserDefaults : NSObject
 +(NSInteger)highScore;
-+(void)setHighScore:(NSInteger)highScore;
++(void)checkTimeSurvived:(NSDate *)gameStartDate;
++(void)checkHighScoreAgainst:(NSInteger)score;
 +(BOOL)hasRun;
 +(void)setHasRun;
++(void)setSecondsSurvived:(float)secondsSurvived;
++(float)secondsSurvived;
 @end
