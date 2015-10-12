@@ -12,16 +12,21 @@
 
 @protocol GameSceneDelegate <NSObject>
 
+/**
+ Description: Notifies the delegate that the game should end
+ @param gameScene: The instance of GameScene making this call
+ @param shouldEnd: BOOL indicating whether the game should end or not
+ */
 -(void)gameScene:(GameScene *)gameScene shouldEndGame:(BOOL)shouldEnd;
 
 @end
 
 @interface GameScene : SKScene<CollisionManagerDelegate>
 
-@property id<GameSceneDelegate>gameSceneDelegate;
-@property SlingShot *slingshot;
-@property CollisionManager *collisionManager;
-@property ScoreNode *scoreNode;
-@property NSInteger killCount;
+@property id<GameSceneDelegate> gameSceneDelegate;
+@property SlingShot             *slingshot;
+@property CollisionManager      *collisionManager;
+@property ScoreNode             *scoreNode;
+@property NSInteger             killCount;
 
 @end

@@ -15,7 +15,7 @@ static NSString *const kHighScoreKey = @"HighScore";
 static NSString *const kHasRunKey = @"HasRun";
 static NSString *const kSecondsSurvivedKey = @"SecondsSurvived";
 
-+(void)checkHighScoreAgainst:(NSInteger)score {
++ (void)checkHighScoreAgainst:(NSInteger)score {
     if (score > [UserDefaults highScore] || ![UserDefaults highScore]) {
         [[GameCenterManager sharedManager] reportScore:score block:^(NSError *error) {
             if (error) {
@@ -26,40 +26,41 @@ static NSString *const kSecondsSurvivedKey = @"SecondsSurvived";
     }
 }
 
-+(void)checkTimeSurvived:(NSDate *)gameStartDate {
++ (void)checkTimeSurvived:(NSDate *)gameStartDate {
     float timeSurvived = -[gameStartDate timeIntervalSinceNow];
     if (timeSurvived > [UserDefaults secondsSurvived]) {
         [UserDefaults setSecondsSurvived:timeSurvived];
     }
 }
 
-+(NSInteger)highScore {
++ (NSInteger)highScore {
     return [[[NSUserDefaults standardUserDefaults]objectForKey:kHighScoreKey]integerValue];
 }
 
-+(void)setHighScore:(NSInteger)highScore {
++ (void)setHighScore:(NSInteger)highScore {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@(highScore) forKey:kHighScoreKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(BOOL)hasRun {
++ (BOOL)hasRun {
     return [[[NSUserDefaults standardUserDefaults]objectForKey:kHasRunKey] boolValue];
 }
 
-+(void)setHasRun {
++ (void)setHasRun {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@(YES) forKey:kHasRunKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(float)secondsSurvived {
++ (float)secondsSurvived {
     return [[[NSUserDefaults standardUserDefaults]objectForKey:kSecondsSurvivedKey] floatValue];
 }
 
-+(void)setSecondsSurvived:(float)secondsSurvived {
++ (void)setSecondsSurvived:(float)secondsSurvived {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@(secondsSurvived) forKey:kSecondsSurvivedKey];
     [defaults synchronize];
 }
+
 @end

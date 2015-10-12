@@ -11,6 +11,7 @@
 #import "GameCenterManager.h"
 
 @interface GameOverViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameOverLabel;
@@ -31,7 +32,7 @@ static NSString *const kBackgroundImage = @"GameOver";
     self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %ld", [UserDefaults highScore]];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:true];
     [self animateLabels];
 }
@@ -42,7 +43,7 @@ static NSString *const kBackgroundImage = @"GameOver";
               restartSelected:YES];
 }
 
--(void)animateLabels {
+- (void)animateLabels {
     [UIView animateWithDuration:0.5 animations:^{
         self.gameOverLabel.alpha = 1.0;
     } completion:^(BOOL finished) {
@@ -52,7 +53,7 @@ static NSString *const kBackgroundImage = @"GameOver";
     }];
 }
 
--(void)animateScoreLabels {
+- (void)animateScoreLabels {
     [UIView animateWithDuration:0.5 animations:^{
         self.highScoreLabel.alpha = 1.0;
         self.scoreLabel.alpha = 1.0;

@@ -10,21 +10,25 @@
 #import "GameOverViewController.h"
 #import "UserDefaults.h"
 
+@interface GameViewController()
+
+@property NSDate *startDate;
+
+@end
+
 @implementation GameViewController
-{
-    NSDate *startDate;
-}
+
 
 static NSString *const GameOverSegue = @"GameOverSegue";
 
 
 #pragma mark - View LifeCycle
--(void)viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     [self showGameScene];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:[GameOverViewController class]]) {
         GameOverViewController *vc = segue.destinationViewController;
         vc.delegate = self;
@@ -33,7 +37,7 @@ static NSString *const GameOverSegue = @"GameOverSegue";
 }
 
 #pragma mark - Present GameScene
--(void)showGameScene {
+- (void)showGameScene {
 
     // Configure the view.
     SKView * skView = (SKView *)self.view;
@@ -47,14 +51,14 @@ static NSString *const GameOverSegue = @"GameOverSegue";
         self.gameScene.scaleMode = SKSceneScaleModeAspectFill;
         self.gameScene.gameSceneDelegate = self;
 
-        startDate = [NSDate date];
+        self.startDate = [NSDate date];
         // Present the scene.
         [skView presentScene:self.gameScene];
     }
 }
 
 #pragma mark - Public Instance methods
--(void)transitionToANewScene {
+- (void)transitionToANewScene {
     SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionRight
                                                         duration:0.2];
     transition.pausesIncomingScene = YES;
@@ -65,23 +69,22 @@ static NSString *const GameOverSegue = @"GameOverSegue";
     self.gameScene.scaleMode = SKSceneScaleModeFill;
     SKView *skView = (SKView *)self.view;
     skView.paused = NO;
-    startDate = [NSDate date];
+    self.startDate = [NSDate date];
     [skView presentScene:self.gameScene
               transition:transition];
 }
 
 #pragma mark - GameSceneDelegate Method
--(void)gameScene:(GameScene *)gameScene shouldEndGame:(BOOL)shouldEnd {
+- (void)gameScene:(GameScene *)gameScene shouldEndGame:(BOOL)shouldEnd {
     if (shouldEnd) {
         [self performSegueWithIdentifier:GameOverSegue sender:nil];
     }
 }
 
 #pragma mark - GameOverSceneDelegate Method
--(void)gameOverVC:(GameOverViewController *)vc restartSelected:(BOOL)selection {
+- (void)gameOverVC:(GameOverViewController *)vc restartSelected:(BOOL)selection {
     if (selection) {
-        [vc dismissViewControllerAnimated:YES
-                               completion:^{
+        [vc dismissViewControllerAnimated:YES completion:^{
             [self transitionToANewScene];
         }];
     }

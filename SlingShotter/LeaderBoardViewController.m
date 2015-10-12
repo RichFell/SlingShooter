@@ -11,6 +11,7 @@
 #import "LeaderBoardTableViewCell.h"
 
 @interface LeaderBoardViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *hsLeaderScores;
 
@@ -18,7 +19,7 @@
 
 @implementation LeaderBoardViewController
 
--(void)setHsLeaderScores:(NSArray *)hsLeaderScores {
+- (void)setHsLeaderScores:(NSArray *)hsLeaderScores {
     _hsLeaderScores = hsLeaderScores;
     if (hsLeaderScores.count <= 10) {
         [self.tableView setScrollEnabled:NO];
@@ -39,7 +40,7 @@
 }
 
 #pragma mark - TableViewDelegate/DataSource Methods
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LeaderBoardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     GKScore *score = self.hsLeaderScores[indexPath.row];
     cell.playerLabel.text = score.player.alias;
@@ -48,7 +49,7 @@
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.hsLeaderScores.count;
 }
 

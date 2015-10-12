@@ -13,8 +13,8 @@
 
 /**
  Description: Adds the BadGuy to the Scene, and sends him towards the bottom.
- :scene: The SKScene the BadGuy is going to be added to.
+ @param scene: The SKScene the BadGuy is going to be added to.
  */
-+(void)dropABadGuyOnScene:(SKScene *)scene;
++ (void)dropABadGuyOnScene:(SKScene *)scene;
 
 @end

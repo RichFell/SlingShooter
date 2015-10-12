@@ -13,52 +13,53 @@
 #import "Constants.h"
 #import "ScoreNode.h"
 #import "UserDefaults.h"
+@interface GameScene()
+
+@property CGPoint       startPull;
+@property BOOL          isShooting;
+@property NSInteger     spawnCount;
+@property SKShapeNode   *line;
+@property NSDate        *startDate;
+
+@end
 
 @implementation GameScene
-{
-#pragma mark - Local Variables
-    CGPoint startPull;
-    BOOL isShooting;
-    NSInteger spawnCount;
-    SKShapeNode *line;
-    NSDate *startDate;
-}
+
+#pragma mark - static variables
+static CGFloat const buffer =       50.0;
+static CGFloat const pullCheck =    10.0;
 
 static NSString *const kBackgroundImage = @"Cornfield";
 
-#pragma mark - static variables
-static CGFloat const buffer = 50.0;
-static CGFloat const pullCheck = 10.0;
-
 #pragma mark - initializers
--(instancetype)initWithSize:(CGSize)size {
+- (instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         [self addBackgroundImageForSize:size];
         self.scoreNode = [ScoreNode addScoreBoardToScene:self];
         [self setupScenePhysicsBody];
         self.slingshot = [SlingShot slingshotInScene:self];
         [BadGuy dropABadGuyOnScene:self];
-        spawnCount = 0;
+        self.spawnCount = 0;
         self.killCount = 0;
         [self addBadGuysLoop];
-        startDate = [NSDate date];
+        self.startDate = [NSDate date];
     }
     return self;
 }
 
 #pragma mark - Game Loops
--(void)addBadGuysLoop {
+- (void)addBadGuysLoop {
     SKAction *wait = [SKAction waitForDuration:4.5];
-    SKAction *run = [SKAction runBlock:^{
-        ++spawnCount;
-        for (NSInteger i = 0; i <= spawnCount; i++) {
+    SKAction *run = [SKAction runBlock:^{ //Logic follows to allow for increasing number of BadGuy objects to be created and brought into play, the longer the game lasts.
+        ++self.spawnCount;
+        for (NSInteger i = 0; i <= self.spawnCount; i++) {
             [self addAnotheBadguyAfterDelay:i];
         }
     }];
     [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, run]]]];
 }
 
--(void)addAnotheBadguyAfterDelay:(NSInteger)delay {
+- (void)addAnotheBadguyAfterDelay:(NSInteger)delay {
     SKAction *wait = [SKAction waitForDuration:delay];
     SKAction *run = [SKAction runBlock:^{
         [BadGuy dropABadGuyOnScene:self];
@@ -66,8 +67,8 @@ static CGFloat const pullCheck = 10.0;
     [self runAction:[SKAction sequence:@[wait, run]]];
 }
 
-#pragma mark - Helper Methods
--(void)addBackgroundImageForSize:(CGSize)size {
+#pragma mark - Private Instance methods
+- (void)addBackgroundImageForSize:(CGSize)size {
     SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:kBackgroundImage];
     backgroundNode.name = kBorderName;
     backgroundNode.position = CGPointMake(size.width/2, size.height/2);
@@ -75,7 +76,7 @@ static CGFloat const pullCheck = 10.0;
     [self addChild:backgroundNode];
 }
 
--(void)setupScenePhysicsBody{
+- (void)setupScenePhysicsBody{
 
     //Add the physics body to the scene, so that there will be a boundary around the scene we can use to delete nodes, and things once they collide.
     self.scaleMode = SKSceneScaleModeFill;
@@ -93,47 +94,48 @@ static CGFloat const pullCheck = 10.0;
 }
 
 #pragma mark - Touches Methods
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[touches allObjects] firstObject];
 
     //If the user touches in the frame of the slingshot, then we want to be able to fire the Pebble
     if (CGRectContainsPoint(self.slingshot.frame, [touch locationInNode:self])) {
-        isShooting = true;
-        startPull = [touch locationInNode:self];
-        [self.slingshot drawStringToPoint:startPull];
+        self.isShooting = true;
+        self.startPull = [touch locationInNode:self];
+        [self.slingshot drawStringToPoint:self.startPull];
     }
     else {
-        isShooting = false;
+        self.isShooting = false;
     }
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (isShooting) {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.isShooting) {
         UITouch *touch = [[touches allObjects]firstObject];
         [self.slingshot drawStringToPoint:[touch locationInNode:self]];
     }
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (isShooting) {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.isShooting) {
         UITouch *lastTouch = [[touches allObjects]lastObject];
-        CGFloat yPullLength = startPull.y - [lastTouch locationInNode:self].y;
-        CGFloat xPullLength = startPull.x - [lastTouch locationInNode:self].x;
+        CGFloat yPullLength = self.startPull.y - [lastTouch locationInNode:self].y;
+        CGFloat xPullLength = self.startPull.x - [lastTouch locationInNode:self].x;
         if (yPullLength > pullCheck || yPullLength < -pullCheck ||
-            xPullLength > pullCheck || xPullLength < -pullCheck) {
+            xPullLength > pullCheck || xPullLength < -pullCheck) { //Want to make sure that the slingshot has been pulled back a minimum distance before allowing the pebble to be fired
             [self.slingshot firePebbleFromPosition:[lastTouch locationInNode:self]];
         }
     }
 }
 
 #pragma mark - CollisionManagerDelegate methods
--(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
+- (void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
     self.scene.view.paused = YES;
-    [UserDefaults checkTimeSurvived:startDate];
+    [UserDefaults checkTimeSurvived:self.startDate];
     [self.gameSceneDelegate gameScene:self shouldEndGame:YES];
 }
 
--(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {
+- (void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {
     [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++self.killCount]];
 }
+
 @end

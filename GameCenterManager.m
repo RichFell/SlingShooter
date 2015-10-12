@@ -10,7 +10,7 @@
 
 @implementation GameCenterManager
 
-+(instancetype)sharedManager {
++ (instancetype)sharedManager {
     static GameCenterManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -19,7 +19,7 @@
     return sharedMyManager;
 }
 
--(void)checkForAuthenticationInBackground:(void(^)(UIViewController *vc, NSError *error))complete {
+- (void)checkForAuthenticationInBackground:(void(^)(UIViewController *vc, NSError *error))complete {
     self.player = [GKLocalPlayer localPlayer];
     [self.player setAuthenticateHandler:^(UIViewController *vc, NSError *error) {
         if (vc) {
@@ -30,16 +30,16 @@
                     if (error) {
                         NSLog(@"%@", error.localizedDescription);
                     }else {
-                        _leaderboardIdentifier = leaderboardIdentifier;
+                        _leaderboardIdentifier = leaderboardIdentifier;//Have to access the value in order to avoid a retain cycle
                     }
                 }];
             }
-            _gameCenterEnabled = [GKLocalPlayer localPlayer].authenticated;
+            _gameCenterEnabled = [GKLocalPlayer localPlayer].authenticated; //Have to access the value in order to avoid a retain cycle
         }
     }];
 }
 
--(void)reportScore:(NSInteger)score block:(void(^)(NSError *error))complete {
+- (void)reportScore:(NSInteger)score block:(void(^)(NSError *error))complete {
     GKScore *s = [[GKScore alloc] initWithLeaderboardIdentifier:self.leaderboardIdentifier];
     s.value = score;
     [GKScore reportScores:@[s] withCompletionHandler:^(NSError *error) {

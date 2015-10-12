@@ -12,15 +12,20 @@
 
 /**
  Description: Instantiate a new SlingShot in the desired CGRect
+ @param scene: The SKScene the slingshot is to be added.
  */
-+(instancetype)slingshotInScene:(SKScene *)scene;
++ (instancetype)slingshotInScene:(SKScene *)scene;
 
 /**
  Description: Tells the SlingShot that it needs to fire a Pebble from the position given. 
- :fromPosition: The position that the player pulled the rubber band back to.
+ @param fromPosition: The position that the player pulled the rubber band back to.
  */
--(void)firePebbleFromPosition:(CGPoint)fromPosition;
+- (void)firePebbleFromPosition:(CGPoint)fromPosition;
 
--(void)drawStringToPoint:(CGPoint)controlPoint;
+/**
+ Description: Draws the string of the slighshot back to a specific point.
+ @param controlPoint: The CGPoint the string is to be drawn back to. 
+ */
+- (void)drawStringToPoint:(CGPoint)controlPoint;
 
 @end

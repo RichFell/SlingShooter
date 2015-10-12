@@ -12,8 +12,18 @@
 
 @interface Pebble : SKSpriteNode
 
-+(instancetype)placePebbleInScene:(SKScene *)scene atPoint:(CGPoint)point;
--(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition;
+/**
+ Description: Adds a new pebble to the scene, at a specific point.
+ @param scene: The SKScene which the pebble is to be added to.
+ @param point: The CGPoint where the pebble is to be added to the scene.
+ */
++ (instancetype)placePebbleInScene:(SKScene *)scene atPoint:(CGPoint)point;
 
-//+(void)pebbleInScene:(SKScene *)scene fromPosition:(CGPoint)position withForce:(CGFloat)force inDirection:(CGPoint)direction;
+/**
+ Description: Shoot a pebble from a position to a specified position.
+ @param startingPosition: The position where the pebble is to be fired from.
+ @param endingPosition: The position towards which the pebble is to be fired.
+ */
+- (void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition;
+
 @end

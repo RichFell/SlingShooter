@@ -10,7 +10,7 @@
 
 @implementation ScoreNode
 
-+(instancetype)addScoreBoardToScene:(SKScene *)scene{
++ (instancetype)addScoreBoardToScene:(SKScene *)scene{
     CGSize size = CGSizeMake(100.0,
                              100.0);
 

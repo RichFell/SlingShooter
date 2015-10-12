@@ -12,6 +12,10 @@
 
 @property SKLabelNode *scoreLabel;
 
-+(instancetype)addScoreBoardToScene:(SKScene *)scene;
+/**
+ Description: Used to add the score board to the scene
+ @param scene: the SKScene in which the score board is to be presented. 
+ */
++ (instancetype)addScoreBoardToScene:(SKScene *)scene;
 
 @end

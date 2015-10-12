@@ -11,15 +11,15 @@
 IB_DESIGNABLE
 @implementation SlingButton
 
--(void)prepareForInterfaceBuilder {
+- (void)prepareForInterfaceBuilder {
     [self setup];
 }
 
--(void)awakeFromNib {
+- (void)awakeFromNib {
     [self setup];
 }
 
--(void)setup {
+- (void)setup {
     self.layer.borderWidth = 3.0;
     self.layer.borderColor = [UIColor redColor].CGColor;
     [self setTintColor:[UIColor redColor]];

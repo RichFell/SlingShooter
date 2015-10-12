@@ -12,11 +12,11 @@
 
 @implementation BadGuy
 
-static CGFloat const kSize = 70.0;
-static NSString *const kImageOne = @"MyCrow";
-static NSString *const kImageTwo = @"MyCrow2";
+static CGFloat const kSize =        70.0;
+static NSString *const kImageOne =  @"MyCrow";
+static NSString *const kImageTwo =  @"MyCrow2";
 
-+(void)dropABadGuyOnScene:(SKScene *)scene {
++ (void)dropABadGuyOnScene:(SKScene *)scene {
     SKTexture *texture = [SKTexture textureWithImageNamed:kImageOne];
     CGSize size = CGSizeMake(kSize, kSize);
     BadGuy *badGuy = [[BadGuy alloc]initWithTexture:texture
@@ -32,7 +32,7 @@ static NSString *const kImageTwo = @"MyCrow2";
 #pragma mark - Helper Methods
 
 //Returns a random CGPoint for originally positioning the BadGuy
--(CGPoint)randomPosition {
+- (CGPoint)randomPosition {
     float width = CGRectGetWidth(self.frame);
     float val = arc4random_uniform(width)/width;
     return CGPointMake(CGRectGetWidth(self.scene.frame) * val,
@@ -40,7 +40,7 @@ static NSString *const kImageTwo = @"MyCrow2";
 }
 
 //Adds the physicsBody, and moves the BadGuy towards the bottom
--(void)moveToKill {
+- (void)moveToKill {
     CGPoint destination = CGPointMake(CGRectGetMidX(self.frame), 0.0);
     CGVector vector = CGVectorMake(destination.x - CGRectGetMidX(self.frame),
                                    destination.y - CGRectGetMidY(self.frame));
@@ -55,7 +55,7 @@ static NSString *const kImageTwo = @"MyCrow2";
 }
 
 //Animation loop to show like the bird is flying
--(void)startAnimation {
+- (void)startAnimation {
     SKTexture *startingTexture = [SKTexture textureWithImageNamed:kImageOne];
     SKTexture *secondTexture = [SKTexture textureWithImageNamed:kImageTwo];
     SKAction *runAction = [SKAction animateWithTextures:@[startingTexture, secondTexture]
@@ -64,9 +64,10 @@ static NSString *const kImageTwo = @"MyCrow2";
 }
 
 //Setup the BitMasks for the BadGuy
--(void)addBitMasks {
-    self.physicsBody.categoryBitMask = kBadGuyCategory;
-    self.physicsBody.collisionBitMask = kPebbleCategory | kBorderCategory;
-    self.physicsBody.contactTestBitMask = kPebbleCategory | kBorderCategory;
+- (void)addBitMasks {
+    self.physicsBody.categoryBitMask =      kBadGuyCategory;
+    self.physicsBody.collisionBitMask =     kPebbleCategory | kBorderCategory;
+    self.physicsBody.contactTestBitMask =   kPebbleCategory | kBorderCategory;
 }
+
 @end

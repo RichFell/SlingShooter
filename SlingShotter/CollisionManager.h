@@ -12,8 +12,18 @@
 
 @protocol CollisionManagerDelegate <NSObject>
 
--(void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager;
--(void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare;
+/**
+ Description: Is called to notify the delegate that a BadGuy object has hit the bottom barrier
+ @param collisionManager: The CollisionManager object which is reporting this
+ */
+- (void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager;
+
+/**
+ Description: Is called when the CollisionManager has detected that a BadGuy object has been hit by a Pebble object.
+ @param collisionManager: The CollisionManager object making this call
+ @param takenCar: BOOL indicating whether the BadGuy had been hit or not
+ */
+- (void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare;
 
 @end
 

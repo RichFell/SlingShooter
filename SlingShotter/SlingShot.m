@@ -10,20 +10,23 @@
 #import "Pebble.h"
 #import "Constants.h"
 
-@implementation SlingShot
-{
-    SKShapeNode *line;
-    CGPoint startPoint;
-    CGPoint endPoint;
-    Pebble *waitingPebble;
-}
+@interface SlingShot()
 
-static CGFloat const yBuffer = 10.0;
-static NSString *const kSlingShotImage = @"Slingshot";
+@property SKShapeNode   *line;
+@property CGPoint       startPoint;
+@property CGPoint       endPoint;
+@property Pebble        *waitingPebble;
+
+@end
+
+@implementation SlingShot
+
+static CGFloat const yBuffer =              10.0;
+static NSString *const kSlingShotImage =    @"Slingshot";
 
 
 #pragma mark - Class Initializer
-+(instancetype)slingshotInScene:(SKScene *)scene{
++ (instancetype)slingshotInScene:(SKScene *)scene{
 
     SKTexture *texture = [SKTexture textureWithImage:[UIImage imageNamed: kSlingShotImage]];
     CGSize size = CGSizeMake(80.0, 140.0);
@@ -40,10 +43,10 @@ static NSString *const kSlingShotImage = @"Slingshot";
     return slingshot;
 }
 
-#pragma mark - Instance Methods
--(void)firePebbleFromPosition:(CGPoint)fromPosition {
-    waitingPebble = [Pebble placePebbleInScene:self.scene atPoint:fromPosition];
-    [waitingPebble firePebbleFromPosition:fromPosition
+#pragma mark - Public Instance Methods
+- (void)firePebbleFromPosition:(CGPoint)fromPosition {
+    self.waitingPebble = [Pebble placePebbleInScene:self.scene atPoint:fromPosition];
+    [self.waitingPebble firePebbleFromPosition:fromPosition
                           towardsPosition:CGPointMake(CGRectGetMidX(self.frame),
                                                       CGRectGetMaxY(self.frame) - yBuffer)];
     [self drawStringToPoint:CGPointMake(CGRectGetMidX(self.frame),
@@ -51,27 +54,27 @@ static NSString *const kSlingShotImage = @"Slingshot";
     
 }
 
--(void)drawStringToPoint:(CGPoint)controlPoint {
+- (void)drawStringToPoint:(CGPoint)controlPoint {
     CGMutablePathRef path = CGPathCreateMutable();
-    startPoint = CGPointMake(CGRectGetMidX(self.frame) - CGRectGetWidth(self.frame)/3,
+    self.startPoint = CGPointMake(CGRectGetMidX(self.frame) - CGRectGetWidth(self.frame)/3,
                              CGRectGetMaxY(self.frame) - yBuffer);
-    endPoint = CGPointMake(CGRectGetMidX(self.frame) + CGRectGetWidth(self.frame)/3,
+    self.endPoint = CGPointMake(CGRectGetMidX(self.frame) + CGRectGetWidth(self.frame)/3,
                            CGRectGetMaxY(self.frame) - yBuffer);
-    CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
+    CGPathMoveToPoint(path, NULL, self.startPoint.x, self.startPoint.y);
 
     CGPathAddQuadCurveToPoint(path, nil,
                               controlPoint.x, controlPoint.y,
-                              endPoint.x, endPoint.y);
+                              self.endPoint.x, self.endPoint.y);
     CGPathAddLineToPoint(path, NULL,
-                         endPoint.x, endPoint.y);
-    if (!line) {
-        line = [SKShapeNode node];
-        [self.scene addChild:line];
+                         self.endPoint.x, self.endPoint.y);
+    if (!self.line) {
+        self.line = [SKShapeNode node];
+        [self.scene addChild:self.line];
     }
-    line.path = path;
-    line.name = kLineName;
-    line.strokeColor = [UIColor whiteColor];
-    line.lineWidth = 5.0;
+    self.line.path = path;
+    self.line.name = kLineName;
+    self.line.strokeColor = [UIColor whiteColor];
+    self.line.lineWidth = 5.0;
     SKAction *pull = [SKAction followPath:path speed:0.3];
     [SKAction runAction:pull onChildWithName:kLineName];
     CGPathRelease(path);

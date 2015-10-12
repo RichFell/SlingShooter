@@ -14,20 +14,14 @@
 
 @implementation CollisionManager
 
--(void)isStillWorking {
-    
-}
-
--(void)didBeginContact:(SKPhysicsContact *)contact {
+- (void)didBeginContact:(SKPhysicsContact *)contact {
     SKPhysicsBody *firstBody, *secondBody;
 
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
     {
         firstBody = contact.bodyA;
         secondBody = contact.bodyB;
-    }
-    else
-    {
+    } else {
         firstBody = contact.bodyB;
         secondBody = contact.bodyA;
     }

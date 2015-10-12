@@ -12,9 +12,10 @@
 @implementation Pebble
 
 static NSString *const kImageName = @"Pebble";
-static CGFloat const kSize = 20.0;
+static CGFloat const kSize =        20.0;
 
-+(instancetype)placePebbleInScene:(SKScene *)scene atPoint:(CGPoint)point{
+#pragma mark - Public Class methods
++ (instancetype)placePebbleInScene:(SKScene *)scene atPoint:(CGPoint)point{
     SKTexture *texture = [SKTexture textureWithImageNamed:kImageName];
     CGSize size = CGSizeMake(kSize, kSize);
     Pebble *pebble = [[Pebble alloc]initWithTexture:texture
@@ -25,7 +26,8 @@ static CGFloat const kSize = 20.0;
     return pebble;
 }
 
--(void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition{
+#pragma mark - Public Instance methods
+- (void)firePebbleFromPosition:(CGPoint)startingPosition towardsPosition:(CGPoint)endingPosition{
     CGVector vector = CGVectorMake(endingPosition.x - startingPosition.x,
                                    endingPosition.y - startingPosition.y);
 
@@ -37,7 +39,7 @@ static CGFloat const kSize = 20.0;
     [self.physicsBody applyImpulse:vector];
 }
 
--(void)addBitMasks {
+- (void)addBitMasks {//Add the bitmasks for the object, and the objects which to notify when it contacts.
     self.physicsBody.categoryBitMask = kPebbleCategory;
     self.physicsBody.collisionBitMask = kBadGuyCategory | kBorderCategory;
     self.physicsBody.contactTestBitMask = kBadGuyCategory | kBorderCategory;
