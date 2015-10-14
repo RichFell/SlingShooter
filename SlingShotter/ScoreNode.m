@@ -18,8 +18,10 @@
     ScoreNode *node = [[ScoreNode alloc]initWithTexture:texture
                                                   color:[UIColor lightGrayColor]
                                                    size:size];
-    SKSpriteNode *scoreLabelNode = [[SKSpriteNode alloc]initWithColor:[UIColor clearColor] size:labelSize];
-    SKSpriteNode *timeLabelNode = [[SKSpriteNode alloc]initWithColor:[UIColor clearColor] size:labelSize];
+    SKSpriteNode *scoreLabelNode = [[SKSpriteNode alloc]initWithColor:[UIColor clearColor]
+                                                                 size:labelSize];
+    SKSpriteNode *timeLabelNode = [[SKSpriteNode alloc]initWithColor:[UIColor clearColor]
+                                                                size:labelSize];
 
     node.scoreLabel = [SKLabelNode labelNodeWithText:@"ScoreLabel"];
     node.scoreLabel.fontName = @"Aventir-Medium";
@@ -29,8 +31,8 @@
     [node.timeLabel setText:@"0 sec"];
     node.position = CGPointMake((size.width/2) + 10.0,
                                 CGRectGetHeight(scene.frame) - (size.height/2) - 30);
-    scoreLabelNode.position = CGPointMake(CGRectGetWidth(node.frame)/2, 0);
-    timeLabelNode.position = CGPointMake(CGRectGetWidth(node.frame)/2, 50);
+    scoreLabelNode.position = CGPointMake(0, 20);
+    timeLabelNode.position = CGPointMake(0, -20);
     [node addChild:scoreLabelNode];
     [node addChild:timeLabelNode];
     [scoreLabelNode addChild:node.scoreLabel];
