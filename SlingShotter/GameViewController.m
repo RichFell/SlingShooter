@@ -32,7 +32,6 @@ static NSString *const GameOverSegue = @"GameOverSegue";
     if ([segue.destinationViewController isKindOfClass:[GameOverViewController class]]) {
         GameOverViewController *vc = segue.destinationViewController;
         vc.delegate = self;
-        vc.killCount = self.gameScene.killCount;
     }
 }
 

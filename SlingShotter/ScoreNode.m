@@ -11,21 +11,30 @@
 @implementation ScoreNode
 
 + (instancetype)addScoreBoardToScene:(SKScene *)scene{
-    CGSize size = CGSizeMake(100.0,
-                             100.0);
+    CGSize size = CGSizeMake(100.0, 100.0);
+    CGSize labelSize = CGSizeMake(100, 50);
 
     SKTexture *texture = [SKTexture textureWithImageNamed:@"ScoreBoard"];
     ScoreNode *node = [[ScoreNode alloc]initWithTexture:texture
                                                   color:[UIColor lightGrayColor]
                                                    size:size];
+    SKSpriteNode *scoreLabelNode = [[SKSpriteNode alloc]initWithColor:[UIColor clearColor] size:labelSize];
+    SKSpriteNode *timeLabelNode = [[SKSpriteNode alloc]initWithColor:[UIColor clearColor] size:labelSize];
 
-    node.scoreLabel = [SKLabelNode labelNodeWithText:@"FOOOOO"];
-    node.scoreLabel.fontName = @"HelveticaNeue";
+    node.scoreLabel = [SKLabelNode labelNodeWithText:@"ScoreLabel"];
+    node.scoreLabel.fontName = @"Aventir-Medium";
     [node.scoreLabel setText:@"0"];
+    node.timeLabel = [SKLabelNode labelNodeWithText:@"TimeLabel"];
+    node.timeLabel.fontName = @"Aventir-Medium";
+    [node.timeLabel setText:@"0 sec"];
     node.position = CGPointMake((size.width/2) + 10.0,
                                 CGRectGetHeight(scene.frame) - (size.height/2) - 30);
-
-    [node addChild:node.scoreLabel];
+    scoreLabelNode.position = CGPointMake(CGRectGetWidth(node.frame)/2, 0);
+    timeLabelNode.position = CGPointMake(CGRectGetWidth(node.frame)/2, 50);
+    [node addChild:scoreLabelNode];
+    [node addChild:timeLabelNode];
+    [scoreLabelNode addChild:node.scoreLabel];
+    [timeLabelNode addChild:node.timeLabel];
     [scene addChild:node];
     return node;
 }

@@ -17,19 +17,12 @@ static NSString *const kSecondsSurvivedKey = @"SecondsSurvived";
 
 + (void)checkHighScoreAgainst:(NSInteger)score {
     if (score > [UserDefaults highScore] || ![UserDefaults highScore]) {
-        [[GameCenterManager sharedManager] reportScore:score block:^(NSError *error) {
+        [[GameCenterManager sharedManager] reportScore:score block:^(BOOL outcome, NSError *error) {
             if (error) {
                 NSLog(@"%@",error.localizedDescription);
             }
         }];
         [UserDefaults setHighScore:score];
-    }
-}
-
-+ (void)checkTimeSurvived:(NSDate *)gameStartDate {
-    float timeSurvived = -[gameStartDate timeIntervalSinceNow];
-    if (timeSurvived > [UserDefaults secondsSurvived]) {
-        [UserDefaults setSecondsSurvived:timeSurvived];
     }
 }
 
@@ -53,11 +46,11 @@ static NSString *const kSecondsSurvivedKey = @"SecondsSurvived";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (float)secondsSurvived {
-    return [[[NSUserDefaults standardUserDefaults]objectForKey:kSecondsSurvivedKey] floatValue];
++ (NSInteger)longestTimeSurvived {
+    return [[[NSUserDefaults standardUserDefaults]objectForKey:kSecondsSurvivedKey] integerValue];
 }
 
-+ (void)setSecondsSurvived:(float)secondsSurvived {
++ (void)setSecondsSurvived:(NSInteger)secondsSurvived {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@(secondsSurvived) forKey:kSecondsSurvivedKey];
     [defaults synchronize];

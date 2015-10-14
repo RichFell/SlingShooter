@@ -27,6 +27,5 @@
 @property SlingShot             *slingshot;
 @property CollisionManager      *collisionManager;
 @property ScoreNode             *scoreNode;
-@property NSInteger             killCount;
 
 @end

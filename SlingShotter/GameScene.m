@@ -13,13 +13,15 @@
 #import "Constants.h"
 #import "ScoreNode.h"
 #import "UserDefaults.h"
-@interface GameScene()
+#import "SlingShotter-Swift.h"
+
+@interface GameScene()<GameLogicManagerDelegate>
 
 @property CGPoint       startPull;
 @property BOOL          isShooting;
 @property NSInteger     spawnCount;
 @property SKShapeNode   *line;
-@property NSDate        *startDate;
+@property (nonatomic)GameLogicManager *logicManager;
 
 @end
 
@@ -39,32 +41,19 @@ static NSString *const kBackgroundImage = @"Cornfield";
         [self setupScenePhysicsBody];
         self.slingshot = [SlingShot slingshotInScene:self];
         [BadGuy dropABadGuyOnScene:self];
-        self.spawnCount = 0;
-        self.killCount = 0;
-        [self addBadGuysLoop];
-        self.startDate = [NSDate date];
+        [self.logicManager beginAddingCrowsToScene:self];
+        [self.logicManager startTimer:YES onScene:self];
+        self.logicManager.timerActive = YES;
     }
     return self;
 }
 
-#pragma mark - Game Loops
-- (void)addBadGuysLoop {
-    SKAction *wait = [SKAction waitForDuration:4.5];
-    SKAction *run = [SKAction runBlock:^{ //Logic follows to allow for increasing number of BadGuy objects to be created and brought into play, the longer the game lasts.
-        ++self.spawnCount;
-        for (NSInteger i = 0; i <= self.spawnCount; i++) {
-            [self addAnotheBadguyAfterDelay:i];
-        }
-    }];
-    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, run]]]];
-}
-
-- (void)addAnotheBadguyAfterDelay:(NSInteger)delay {
-    SKAction *wait = [SKAction waitForDuration:delay];
-    SKAction *run = [SKAction runBlock:^{
-        [BadGuy dropABadGuyOnScene:self];
-    }];
-    [self runAction:[SKAction sequence:@[wait, run]]];
+- (GameLogicManager *)logicManager {
+    if (!_logicManager) {
+        _logicManager = [GameLogicManager sharedInstance];
+        _logicManager.delegate = self;
+    }
+    return _logicManager;
 }
 
 #pragma mark - Private Instance methods
@@ -130,12 +119,17 @@ static NSString *const kBackgroundImage = @"Cornfield";
 #pragma mark - CollisionManagerDelegate methods
 - (void)collisionManagerBadGuyHitBottom:(CollisionManager *)collisionManager {
     self.scene.view.paused = YES;
-    [UserDefaults checkTimeSurvived:self.startDate];
+    [self.logicManager stopTimer];
     [self.gameSceneDelegate gameScene:self shouldEndGame:YES];
 }
 
 - (void)collisionManager:(CollisionManager *)collisionManager tookOutABaddy:(BOOL)takenCare {
-    [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++self.killCount]];
+    [self.scoreNode.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)++self.logicManager.killCount]];
+}
+
+#pragma mark - GameLogicManager
+- (void)gameLogicManager:(GameLogicManager *)manager shouldShowTime:(NSString *)timeString {
+    [self.scoreNode.timeLabel setText:timeString];
 }
 
 @end

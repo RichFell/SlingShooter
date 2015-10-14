@@ -12,13 +12,17 @@
 
 @interface LeaderBoardViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *hsLeaderScores;
+
+typedef void(^ScoresBlock)(NSArray *array, NSError *error);
 
 @end
 
 @implementation LeaderBoardViewController
 
+#pragma mark - Setters/Getters
 - (void)setHsLeaderScores:(NSArray *)hsLeaderScores {
     _hsLeaderScores = hsLeaderScores;
     if (hsLeaderScores.count <= 10) {
@@ -27,16 +31,10 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[GameCenterManager sharedManager]retrieveTopTenScoresInBackground:^(NSArray *scores, NSError *error) {
-        if (scores) {
-            self.hsLeaderScores = scores;
-        }
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);//TODO: Add alert here
-        }
-    }];
+    [self selectedListToDisplay:self.segmentedControl];
 }
 
 #pragma mark - TableViewDelegate/DataSource Methods
@@ -53,9 +51,32 @@
     return self.hsLeaderScores.count;
 }
 
+#pragma mark - Actions
 - (IBAction)dismissVCOnTap:(UIBarButtonItem *)sender {
     [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)selectedListToDisplay:(UISegmentedControl *)sender {
+
+    void (^Scores)(NSArray *scores, NSError *error) = ^(NSArray *scores, NSError *error) {
+        if (scores) {
+            self.hsLeaderScores = scores;
+        } else {
+            self.hsLeaderScores = @[];
+        }
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    };
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [[GameCenterManager sharedManager]retrieveTopTenScoresInBackground:Scores];
+            break;
+        case 1:
+            [[GameCenterManager sharedManager]retrieveTopTenTimesInBackground:Scores];
+        default:
+            break;
+    }
+}
 
 @end

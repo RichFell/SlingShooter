@@ -24,7 +24,6 @@
 @interface GameOverViewController : UIViewController
 
 @property id<GameOverVCDelegate>delegate;
-@property NSInteger             killCount;
 @property NSDate                *gameStartDate;
 
 @end

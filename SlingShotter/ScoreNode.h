@@ -11,6 +11,7 @@
 @interface ScoreNode : SKSpriteNode
 
 @property SKLabelNode *scoreLabel;
+@property SKLabelNode *timeLabel;
 
 /**
  Description: Used to add the score board to the scene

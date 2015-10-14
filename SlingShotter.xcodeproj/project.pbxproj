@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BCB690F1BCD9AAF0015DD85 /* GOCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB690E1BCD9AAF0015DD85 /* GOCUITests.swift */; };
+		9BCB691C1BCDA98C0015DD85 /* GameLogicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB691B1BCDA98C0015DD85 /* GameLogicManager.swift */; settings = {ASSET_TAGS = (); }; };
+		9BCB691D1BCED3410015DD85 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7CE1B11186800C71D8F /* UserDefaults.m */; settings = {ASSET_TAGS = (); }; };
 		9BCDF7891B0E691500C71D8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF7881B0E691500C71D8F /* main.m */; };
 		9BCDF78C1B0E691500C71D8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF78B1B0E691500C71D8F /* AppDelegate.m */; };
 		9BCDF78F1B0E691500C71D8F /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCDF78E1B0E691500C71D8F /* GameScene.m */; };
@@ -32,6 +35,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9BCB69111BCD9AAF0015DD85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9BCDF77B1B0E691500C71D8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BCDF7821B0E691500C71D8F;
+			remoteInfo = SlingShotter;
+		};
 		9BCDF7A21B0E691500C71D8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9BCDF77B1B0E691500C71D8F /* Project object */;
@@ -42,6 +52,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9BCB690C1BCD9AAF0015DD85 /* GOCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GOCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BCB690E1BCD9AAF0015DD85 /* GOCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCUITests.swift; sourceTree = "<group>"; };
+		9BCB69101BCD9AAF0015DD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BCB69161BCD9F310015DD85 /* SlingShotter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SlingShotter-Bridging-Header.h"; sourceTree = "<group>"; };
+		9BCB691B1BCDA98C0015DD85 /* GameLogicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogicManager.swift; sourceTree = "<group>"; };
 		9BCDF7831B0E691500C71D8F /* SlingShotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlingShotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BCDF7871B0E691500C71D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BCDF7881B0E691500C71D8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,6 +102,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9BCB69091BCD9AAF0015DD85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9BCDF7801B0E691500C71D8F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,11 +136,66 @@
 			name = UserDefaults;
 			sourceTree = "<group>";
 		};
+		9BCB68CB1BCD95D60015DD85 /* BadGuy */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7B11B0E7D0400C71D8F /* BadGuy.h */,
+				9BCDF7B21B0E7D0400C71D8F /* BadGuy.m */,
+			);
+			name = BadGuy;
+			sourceTree = "<group>";
+		};
+		9BCB68CC1BCD95E70015DD85 /* SlingShot */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7B71B0E7D9900C71D8F /* SlingShot.h */,
+				9BCDF7B81B0E7D9900C71D8F /* SlingShot.m */,
+			);
+			name = SlingShot;
+			sourceTree = "<group>";
+		};
+		9BCB68CD1BCD95F30015DD85 /* Pebble */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF7BA1B0E8A8100C71D8F /* Pebble.h */,
+				9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */,
+			);
+			name = Pebble;
+			sourceTree = "<group>";
+		};
+		9BCB690D1BCD9AAF0015DD85 /* GOCUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9BCB690E1BCD9AAF0015DD85 /* GOCUITests.swift */,
+				9BCB69101BCD9AAF0015DD85 /* Info.plist */,
+			);
+			path = GOCUITests;
+			sourceTree = "<group>";
+		};
+		9BCB69191BCD9FCF0015DD85 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9BCB691B1BCDA98C0015DD85 /* GameLogicManager.swift */,
+				9BF39F771B3496CB00E26DCA /* GameCenterManager */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		9BCB691A1BCDA0400015DD85 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				9BCDF78A1B0E691500C71D8F /* AppDelegate.h */,
+				9BCDF78B1B0E691500C71D8F /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		9BCDF77A1B0E691500C71D8F = {
 			isa = PBXGroup;
 			children = (
 				9BCDF7851B0E691500C71D8F /* SlingShotter */,
 				9BCDF7A41B0E691500C71D8F /* SlingShotterTests */,
+				9BCB690D1BCD9AAF0015DD85 /* GOCUITests */,
 				9BCDF7841B0E691500C71D8F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -128,6 +205,7 @@
 			children = (
 				9BCDF7831B0E691500C71D8F /* SlingShotter.app */,
 				9BCDF7A11B0E691500C71D8F /* SlingShotterTests.xctest */,
+				9BCB690C1BCD9AAF0015DD85 /* GOCUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,7 +213,7 @@
 		9BCDF7851B0E691500C71D8F /* SlingShotter */ = {
 			isa = PBXGroup;
 			children = (
-				9BF39F771B3496CB00E26DCA /* GameCenterManager */,
+				9BCB69191BCD9FCF0015DD85 /* Managers */,
 				9BCDF7D01B1255AF00C71D8F /* Buttons */,
 				9BCDF7CC1B11184500C71D8F /* Utilities */,
 				9BCDF7C51B0FF25300C71D8F /* ScoreLabel */,
@@ -152,6 +230,7 @@
 		9BCDF7861B0E691500C71D8F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9BF39F751B3488B800E26DCA /* GameKit.framework */,
 				9BCDF7871B0E691500C71D8F /* Info.plist */,
 				9BCDF7881B0E691500C71D8F /* main.m */,
 			);
@@ -178,12 +257,9 @@
 		9BCDF7B41B0E7D1200C71D8F /* Characters */ = {
 			isa = PBXGroup;
 			children = (
-				9BCDF7B11B0E7D0400C71D8F /* BadGuy.h */,
-				9BCDF7B21B0E7D0400C71D8F /* BadGuy.m */,
-				9BCDF7B71B0E7D9900C71D8F /* SlingShot.h */,
-				9BCDF7B81B0E7D9900C71D8F /* SlingShot.m */,
-				9BCDF7BA1B0E8A8100C71D8F /* Pebble.h */,
-				9BCDF7BB1B0E8A8100C71D8F /* Pebble.m */,
+				9BCB68CD1BCD95F30015DD85 /* Pebble */,
+				9BCB68CC1BCD95E70015DD85 /* SlingShot */,
+				9BCB68CB1BCD95D60015DD85 /* BadGuy */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -256,7 +332,6 @@
 		9BF39F771B3496CB00E26DCA /* GameCenterManager */ = {
 			isa = PBXGroup;
 			children = (
-				9BF39F751B3488B800E26DCA /* GameKit.framework */,
 				9BF39F781B3496FE00E26DCA /* GameCenterManager.h */,
 				9BF39F791B3496FE00E26DCA /* GameCenterManager.m */,
 			);
@@ -267,8 +342,8 @@
 		9BF39F7B1B34BD3200E26DCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9BCDF78A1B0E691500C71D8F /* AppDelegate.h */,
-				9BCDF78B1B0E691500C71D8F /* AppDelegate.m */,
+				9BCB691A1BCDA0400015DD85 /* AppDelegate */,
+				9BCB69161BCD9F310015DD85 /* SlingShotter-Bridging-Header.h */,
 				9BCDF7951B0E691500C71D8F /* Main.storyboard */,
 				9BCDF7981B0E691500C71D8F /* Images.xcassets */,
 				9BCDF79A1B0E691500C71D8F /* LaunchScreen.xib */,
@@ -333,6 +408,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9BCB690B1BCD9AAF0015DD85 /* GOCUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BCB69131BCD9AAF0015DD85 /* Build configuration list for PBXNativeTarget "GOCUITests" */;
+			buildPhases = (
+				9BCB69081BCD9AAF0015DD85 /* Sources */,
+				9BCB69091BCD9AAF0015DD85 /* Frameworks */,
+				9BCB690A1BCD9AAF0015DD85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9BCB69121BCD9AAF0015DD85 /* PBXTargetDependency */,
+			);
+			name = GOCUITests;
+			productName = GOCUITests;
+			productReference = 9BCB690C1BCD9AAF0015DD85 /* GOCUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9BCDF7821B0E691500C71D8F /* SlingShotter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BCDF7AB1B0E691500C71D8F /* Build configuration list for PBXNativeTarget "SlingShotter" */;
@@ -374,9 +467,14 @@
 		9BCDF77B1B0E691500C71D8F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = MobileMakers;
 				TargetAttributes = {
+					9BCB690B1BCD9AAF0015DD85 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 9BCDF7821B0E691500C71D8F;
+					};
 					9BCDF7821B0E691500C71D8F = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = S38456XTSR;
@@ -408,11 +506,19 @@
 			targets = (
 				9BCDF7821B0E691500C71D8F /* SlingShotter */,
 				9BCDF7A01B0E691500C71D8F /* SlingShotterTests */,
+				9BCB690B1BCD9AAF0015DD85 /* GOCUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9BCB690A1BCD9AAF0015DD85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9BCDF7811B0E691500C71D8F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,10 +539,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9BCB69081BCD9AAF0015DD85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BCB691D1BCED3410015DD85 /* UserDefaults.m in Sources */,
+				9BCB690F1BCD9AAF0015DD85 /* GOCUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9BCDF77F1B0E691500C71D8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCB691C1BCDA98C0015DD85 /* GameLogicManager.swift in Sources */,
 				9BCDF7CB1B10ED4100C71D8F /* GameOverViewController.m in Sources */,
 				9BCDF7941B0E691500C71D8F /* GameViewController.m in Sources */,
 				9BCDF7B31B0E7D0400C71D8F /* BadGuy.m in Sources */,
@@ -468,6 +584,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9BCB69121BCD9AAF0015DD85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9BCDF7821B0E691500C71D8F /* SlingShotter */;
+			targetProxy = 9BCB69111BCD9AAF0015DD85 /* PBXContainerItemProxy */;
+		};
 		9BCDF7A31B0E691500C71D8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9BCDF7821B0E691500C71D8F /* SlingShotter */;
@@ -495,6 +616,35 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9BCB69141BCD9AAF0015DD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = GOCUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.RichFell.GOCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = SlingShotter;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		9BCB69151BCD9AAF0015DD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GOCUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.RichFell.GOCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SlingShotter;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		9BCDF7A91B0E691500C71D8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -585,12 +735,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SlingShotter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SlingShotter/SlingShotter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -598,12 +751,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SlingShotter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SlingShotter/SlingShotter-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -650,6 +805,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9BCB69131BCD9AAF0015DD85 /* Build configuration list for PBXNativeTarget "GOCUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BCB69141BCD9AAF0015DD85 /* Debug */,
+				9BCB69151BCD9AAF0015DD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9BCDF77E1B0E691500C71D8F /* Build configuration list for PBXProject "SlingShotter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

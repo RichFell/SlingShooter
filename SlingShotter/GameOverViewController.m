@@ -9,27 +9,42 @@
 #import "GameOverViewController.h"
 #import "UserDefaults.h"
 #import "GameCenterManager.h"
+#import "SlingShotter-Swift.h"
 
 @interface GameOverViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameOverLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *longestTimeLabel;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+
+
+@property GameLogicManager *logicManager;
 
 @end
 
 @implementation GameOverViewController
 
+static float const LabelStartingAlpha = 0.0;
+static float const LabelEndingAlpha =   1.0;
+
 static NSString *const kBackgroundImage = @"GameOver";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.gameOverLabel.alpha = 0.0;
-    self.highScoreLabel.alpha = 0.0;
-    self.scoreLabel.alpha = 0.0;
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.killCount];
-    [UserDefaults checkHighScoreAgainst:self.killCount];
+    for (UILabel *label in self.labels) {
+        label.alpha = LabelStartingAlpha;
+    }
+    self.gameOverLabel.alpha = LabelStartingAlpha;
+
+    self.logicManager = [GameLogicManager sharedInstance];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.logicManager.killCount];
+    [UserDefaults checkHighScoreAgainst:self.logicManager.killCount];
     self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %ld", [UserDefaults highScore]];
+    self.lastTimeLabel.text = [NSString stringWithFormat:@"Current Time: %ld sec", (long)self.logicManager.timeRan];
+    self.longestTimeLabel.text = [NSString stringWithFormat:@"Longest Time: %ld sec", [UserDefaults longestTimeSurvived]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -39,13 +54,14 @@ static NSString *const kBackgroundImage = @"GameOver";
 
 #pragma mark - IBActions
 - (IBAction)restartOnTap:(UIButton *)sender {
+    [[GameLogicManager sharedInstance]reset];
     [self.delegate gameOverVC:self
               restartSelected:YES];
 }
 
 - (void)animateLabels {
     [UIView animateWithDuration:0.5 animations:^{
-        self.gameOverLabel.alpha = 1.0;
+        self.gameOverLabel.alpha = LabelEndingAlpha;
     } completion:^(BOOL finished) {
         if (finished) {
             [self animateScoreLabels];
@@ -55,8 +71,9 @@ static NSString *const kBackgroundImage = @"GameOver";
 
 - (void)animateScoreLabels {
     [UIView animateWithDuration:0.5 animations:^{
-        self.highScoreLabel.alpha = 1.0;
-        self.scoreLabel.alpha = 1.0;
+        for (UILabel *label in self.labels) {
+            label.alpha = LabelEndingAlpha;
+        }
     }];
 }
 

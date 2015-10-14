@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SlingShotter-Swift.h"
 
 @interface AppDelegate ()
 

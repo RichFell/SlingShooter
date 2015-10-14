@@ -10,6 +10,8 @@
 
 @implementation GameCenterManager
 
+static NSString *const LongestPlayTimeLeaderID = @"LongestPlay.Time";
+
 + (instancetype)sharedManager {
     static GameCenterManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -39,21 +41,41 @@
     }];
 }
 
-- (void)reportScore:(NSInteger)score block:(void(^)(NSError *error))complete {
+- (void)reportScore:(NSInteger)score block:(ReportScoreBlock)complete {
     GKScore *s = [[GKScore alloc] initWithLeaderboardIdentifier:self.leaderboardIdentifier];
     s.value = score;
     [GKScore reportScores:@[s] withCompletionHandler:^(NSError *error) {
-        complete(error);
+        complete(error? NO: YES, error);
     }];
 }
 
-- (void) retrieveTopTenScoresInBackground:(void(^)(NSArray *scores, NSError *error))completed {
+- (void)reportTimePlayed:(NSInteger)timePlayed block:(ReportScoreBlock)complete {
+    GKScore *s = [[GKScore alloc] initWithLeaderboardIdentifier:LongestPlayTimeLeaderID];
+    s.value = timePlayed;
+    [GKScore reportScores:@[s] withCompletionHandler:^(NSError * _Nullable error) {
+        complete(error? NO: YES, error);
+    }];
+}
+
+- (void) retrieveTopTenScoresInBackground:(GameScoreBlock)completed {
     GKLeaderboard *leaderboardRequest = [[GKLeaderboard alloc] init];
     if (leaderboardRequest != nil) {
         leaderboardRequest.playerScope = GKLeaderboardPlayerScopeGlobal;
         leaderboardRequest.identifier = self.leaderboardIdentifier;
         leaderboardRequest.range = NSMakeRange(1,10);
         [leaderboardRequest loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+            completed(scores, error);
+        }];
+    }
+}
+
+- (void)retrieveTopTenTimesInBackground:(GameScoreBlock)completed {
+    GKLeaderboard *leaderboardRequest = [GKLeaderboard new];
+    if (leaderboardRequest != nil) {
+        leaderboardRequest.playerScope = GKLeaderboardPlayerScopeGlobal;
+        leaderboardRequest.identifier = LongestPlayTimeLeaderID;
+        leaderboardRequest.range = NSMakeRange(1, 10);
+        [leaderboardRequest loadScoresWithCompletionHandler:^(NSArray<GKScore *> * _Nullable scores, NSError * _Nullable error) {
             completed(scores, error);
         }];
     }
